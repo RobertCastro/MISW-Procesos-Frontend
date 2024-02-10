@@ -29,6 +29,7 @@
     "@auth0/angular-jwt": "^5.1.2",
     "bootstrap": "^5.2.3",
     "bootstrap-icons": "^1.10.2",
+	"express": "^4.17.1",
     "icons": "^1.0.0",
     "ngx-toastr": "^16.0.1",
     "rxjs": "~7.5.0",
