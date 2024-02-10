@@ -77,6 +77,20 @@
               "extractLicenses": false,
               "sourceMap": true,
               "namedChunks": true
+            },
+            "local": {
+			  "fileReplacements": [
+			    {
+				  "replace": "src/environments/environment.ts",
+				  "with": "src/environments/environment.local.ts"
+			    }
+			  ],
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true
             }
           },
           "defaultConfiguration": "production"
@@ -89,9 +103,15 @@
             },
             "development": {
               "browserTarget": "ProyectoFrontend:build:development"
+            },
+            "test": {
+              "browserTarget": "ProyectoFrontend:build:test"
+            },
+            "local": {
+              "browserTarget": "ProyectoFrontend:build:local"
             }
           },
-          "defaultConfiguration": "development"
+          "defaultConfiguration": "local"
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
