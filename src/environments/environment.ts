@@ -1,4 +1,4 @@
 export const environment = {
-    production: true,
-    apiUrl: 'https://cortaestancia-backend-grupo23-b0c55df4af13.herokuapp.com/'
+    production: false,
+    apiUrl: 'http://127.0.0.1:5000'
   };
