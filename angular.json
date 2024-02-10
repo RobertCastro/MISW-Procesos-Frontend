@@ -32,7 +32,6 @@
               "src/styles.css"
             ],
             "scripts": [
-			  "postinstall": "ng build --configuration=development"
 			]
           },
           "configurations": {
