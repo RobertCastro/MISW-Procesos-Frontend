@@ -1,0 +1,41 @@
+name: Build test and merge to main
+
+on:
+  push:
+    branches: [ release ]
+  pull_request:
+    branches: [ release ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v3
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '18.13.0'
+        cache: 'npm'
+
+    - name: Install Dependencies
+      run: npm ci
+
+    - name: Run Tests
+      run: npm run test -- --watch=false --browsers=ChromeHeadless
+
+  merge_to_main:
+    needs: test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Merge -> main
+        uses: devmasx/merge-branch@master
+        with:
+            type: now
+            target_branch: main
+            message: Merge into main
+            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
