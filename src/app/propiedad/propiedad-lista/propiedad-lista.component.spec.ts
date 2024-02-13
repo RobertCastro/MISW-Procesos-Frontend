@@ -5,6 +5,7 @@ import { of } from 'rxjs';
 import { ToastrService, ToastrModule } from 'ngx-toastr';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { EncabezadoAppModule } from 'src/app/encabezado-app/encabezado-app.module';
+import { By } from '@angular/platform-browser';
 
 describe('PropiedadListaComponent', () => {
   let component: PropiedadListaComponent;
@@ -32,6 +33,12 @@ describe('PropiedadListaComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(PropiedadListaComponent);
     component = fixture.componentInstance;
+    
+    //mock propiedad
+    component.propiedades = [
+      { id: 1, nombre_propiedad: 'Propiedad 1', ciudad: 'Ciudad 1', municipio: 'Municipio 1', direccion: 'Direccion 1', nombre_propietario: 'Propietario 1', numero_contacto: 'Contacto 1', banco: 'Banco 1', numero_cuenta: 'Cuenta 1' },
+      ];
+
     fixture.detectChanges();
   });
 
@@ -89,6 +96,11 @@ describe('PropiedadListaComponent', () => {
     });
   
     expect(direccionColumnExists).toBeFalse();
+  });
+
+  it('should  have button with test_id="bot_ver"', () => {
+    const button = fixture.debugElement.query(By.css('[test-id="bot_ver"]'));
+    expect(button).toBeTruthy();
   });
 
 });
