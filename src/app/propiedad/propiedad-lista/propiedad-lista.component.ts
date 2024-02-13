@@ -13,6 +13,15 @@ export class PropiedadListaComponent implements OnInit {
 
   propiedades: Array<Propiedad> = []
   propiedadElegida: Propiedad
+  mostrarDetalleComponente: boolean = false;
+
+  propiedadSeleccionadaId: number;
+
+  verDetalle(id: number): void {
+    this.propiedadSeleccionadaId = id;
+    this.mostrarDetalleComponente = true;
+  }
+
 
   constructor(
     private routerPath: Router,
