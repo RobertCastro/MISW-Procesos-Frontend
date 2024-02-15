@@ -32,17 +32,46 @@ export class UsuarioRegistroComponent implements OnInit {
       usuario: ["", [Validators.required, Validators.maxLength(50)]],
       password: ["", [Validators.required, Validators.maxLength(50), Validators.minLength(4)]],
       confirmPassword: ["", [Validators.required, Validators.maxLength(50), Validators.minLength(4)]],
-      nombre: ['', [Validators.required, Validators.maxLength(50)]],
-      apellidos: ['', [Validators.required, Validators.maxLength(50)]],
-      tipoIdentificacion: ['', Validators.required],
-      numeroIdentificacion: ['', [Validators.required, Validators.maxLength(30)]],
-      correo: ['', [Validators.required, Validators.email, Validators.maxLength(100)]],
-      celular: ['', [Validators.required, Validators.maxLength(10)]],
+      nombre: [''],
+      apellidos: [''],
+      tipoIdentificacion: [''],
+      numeroIdentificacion: [''],
+      correo: [''],
+      celular: ['']
     });
   }
 
   onChangeTipoUsuario(event): void {
     this.tipoUsuarioSeleccionado = event.target.value;
+
+    if (this.esAdministrador()) {
+      this.usuarioForm.get('nombre').clearValidators();
+      this.usuarioForm.get('apellidos').clearValidators();
+      this.usuarioForm.get('tipoIdentificacion').clearValidators();
+      this.usuarioForm.get('numeroIdentificacion').clearValidators();
+      this.usuarioForm.get('correo').clearValidators();
+      this.usuarioForm.get('celular').clearValidators();
+    } 
+
+    if (this.esPropietario()) {
+      this.usuarioForm.get('nombre').setValidators([Validators.required, Validators.maxLength(50)]);
+      this.usuarioForm.get('apellidos').setValidators([Validators.required, Validators.maxLength(50)]);
+      this.usuarioForm.get('tipoIdentificacion').setValidators(Validators.required);
+      this.usuarioForm.get('numeroIdentificacion').setValidators([Validators.required, Validators.maxLength(30)]);
+      this.usuarioForm.get('correo').setValidators([Validators.required, Validators.email, Validators.maxLength(100)]);
+      this.usuarioForm.get('celular').setValidators([Validators.required, Validators.maxLength(10)]);
+    }
+
+    this.usuarioForm.updateValueAndValidity();
+    
+  }
+
+  esPropietario(): boolean {
+    return this.tipoUsuarioSeleccionado === 'Propietario';
+  }
+
+  esAdministrador(): boolean {
+    return this.tipoUsuarioSeleccionado === 'Administrador';
   }
 
   registrarUsuario() {
