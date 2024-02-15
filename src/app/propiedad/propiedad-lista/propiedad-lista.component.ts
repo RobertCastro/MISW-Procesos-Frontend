@@ -14,6 +14,8 @@ export class PropiedadListaComponent implements OnInit {
   propiedades: Array<Propiedad> = []
   propiedadElegida: Propiedad
   mostrarDetalleComponente: boolean = false;
+  mostrarCrearComponente: boolean = false;
+
   propiedadSeleccionadaId: number;
 
   constructor(
@@ -52,7 +54,16 @@ export class PropiedadListaComponent implements OnInit {
   }
 
   crearPropiedad():void {
-    this.routerPath.navigate(['/propiedad/crear/']);
+    this.mostrarCrearComponente = true;
+  }
+
+  cancelarCrearPropiedad():void {
+    this.mostrarCrearComponente = false;
+  }
+
+  submitCrearPropiedad():void {
+    this.mostrarCrearComponente = false;
+    this.ngOnInit();
   }
 
   movimientos(idPropiedad: number): void {

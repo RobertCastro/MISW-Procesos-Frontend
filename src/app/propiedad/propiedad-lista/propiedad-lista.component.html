@@ -2,7 +2,7 @@
 <h1>Propiedades</h1>
 <div class="row">
   <div class="col-md-4">
-    Propiedades <button type="button" class="btn btn-warning" (click)="crearPropiedad()"><i
+    Propiedades <button type="button" [disabled]="false" class="btn btn-warning" (click)="crearPropiedad()"><i
         class="bi bi-plus-circle"></i></button>
     <div>
       <table class="table" border="0">
@@ -33,6 +33,6 @@
       [propiedadId]="propiedadSeleccionadaId"
       (cerrarDetalle)="ocultarDetallePropiedad()"
       ></app-propiedad-detalle>
-
+    <app-propiedad-crear *ngIf="mostrarCrearComponente" (cancelarCrearPropiedad)="cancelarCrearPropiedad()" (submitCrearPropiedad)="submitCrearPropiedad()"></app-propiedad-crear>
   </div>
 </div>

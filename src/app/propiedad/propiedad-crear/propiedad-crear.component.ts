@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
@@ -13,7 +13,8 @@ import { EnumsService } from 'src/app/enums.service';
   styleUrls: ['./propiedad-crear.component.css']
 })
 export class PropiedadCrearComponent implements OnInit {
-
+  @Output() cancelarCrearPropiedad: EventEmitter<void> = new EventEmitter<void>();
+  @Output() submitCrearPropiedad: EventEmitter<void> = new EventEmitter<void>();
   propiedadForm: FormGroup;
   listaBancos: Banco[] = [];
 
@@ -60,6 +61,7 @@ export class PropiedadCrearComponent implements OnInit {
       this.toastr.success("Confirmation", "Registro creado")
       this.propiedadForm.reset();
       this.routerPath.navigate(['/propiedades/']);
+      this.submitCrearPropiedad.emit();
     },
     error => {
       if (error.statusText === "UNAUTHORIZED") {
@@ -77,7 +79,7 @@ export class PropiedadCrearComponent implements OnInit {
 
   cancelarPropiedad(): void {
     this.propiedadForm.reset();
-    this.routerPath.navigate(['/propiedades/']);
+    this.cancelarCrearPropiedad.emit();
   }
 
 
