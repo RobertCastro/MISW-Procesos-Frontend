@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, OnInit, Input, OnChanges, SimpleChanges,Output, EventEmitter } from '@angular/core';
 import { PropiedadService } from '../propiedad.service';
 import { Propiedad } from '../propiedad';
 
@@ -9,6 +9,7 @@ import { Propiedad } from '../propiedad';
 })
 export class PropiedadDetalleComponent implements OnInit {
   @Input() propiedadId: number;
+  @Output() cerrarDetalle = new EventEmitter<void>();
   propiedad: Propiedad;
 
   constructor(private propiedadService: PropiedadService) { }
@@ -34,5 +35,9 @@ export class PropiedadDetalleComponent implements OnInit {
       next: (data) => this.propiedad = data,
       error: (error) => console.error('Error al obtener los detalles de la propiedad', error)
     });
+  }
+
+  cerrarDetallePropiedad(): void {
+    this.cerrarDetalle.emit(); // Emitir el evento cuando el botón sea clickeado
   }
 }

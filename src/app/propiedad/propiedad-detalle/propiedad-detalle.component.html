@@ -9,7 +9,7 @@
             <td>{{ propiedad.ciudad }}</td>
           </tr>
           <tr>
-            <th scope="row">Minucipio</th>
+            <th scope="row">Municipio</th>
             <td>{{ propiedad.municipio }}</td>
           </tr>
           <tr>
@@ -34,5 +34,8 @@
           </tr>
         </tbody>
       </table>
+    </div>
+    <div class="col-md-12">
+      <button (click)="cerrarDetallePropiedad()" class="btn btn-info text-dark">Cerrar detalle</button>
     </div>
   </div>

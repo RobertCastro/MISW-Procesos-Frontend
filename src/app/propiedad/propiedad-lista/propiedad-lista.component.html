@@ -29,7 +29,10 @@
     </div>
   </div>
   <div class="col-md-8">
-    <app-propiedad-detalle *ngIf="mostrarDetalleComponente" [propiedadId]="propiedadSeleccionadaId"></app-propiedad-detalle>
+    <app-propiedad-detalle *ngIf="mostrarDetalleComponente"
+      [propiedadId]="propiedadSeleccionadaId"
+      (cerrarDetalle)="ocultarDetallePropiedad()"
+      ></app-propiedad-detalle>
 
   </div>
 </div>
