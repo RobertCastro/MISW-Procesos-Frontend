@@ -63,7 +63,7 @@ export class UsuarioRegistroComponent implements OnInit {
     }
 
     this.usuarioForm.updateValueAndValidity();
-    
+
   }
 
   esPropietario(): boolean {
@@ -75,13 +75,38 @@ export class UsuarioRegistroComponent implements OnInit {
   }
 
   registrarUsuario() {
-    this.usuarioService.registro(this.usuarioForm.get('usuario')?.value, this.usuarioForm.get('password')?.value)
+
+    if (this.esAdministrador()) {
+      this.usuarioService.registro(
+        this.usuarioForm.get('usuario')?.value, 
+        this.usuarioForm.get('password')?.value)
       .subscribe(res => {
         this.router.navigate([`/`])
       },
         error => {
           this.toastrService.error("Error en el registro. Verifique que el usuario no se encuentre ya registrado", "Error", {closeButton: true});
         })
+    }
+
+    if (this.esPropietario()) {
+      this.usuarioService.registroPropietario(
+        this.usuarioForm.get('usuario')?.value, 
+        this.usuarioForm.get('password')?.value,
+        this.usuarioForm.get('nombre')?.value,
+        this.usuarioForm.get('apellidos')?.value,
+        this.usuarioForm.get('tipoIdentificacion')?.value,
+        this.usuarioForm.get('numeroIdentificacion')?.value,
+        this.usuarioForm.get('correo')?.value,
+        this.usuarioForm.get('celular')?.value
+      )
+      .subscribe(res => {
+        this.router.navigate([`/`])
+      },
+        error => {
+          this.toastrService.error("Error en el registro. Verifique que el usuario no se encuentre ya registrado", "Error", {closeButton: true});
+        })
+    }
+   
   }
 
 

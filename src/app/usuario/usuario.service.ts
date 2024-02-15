@@ -18,6 +18,34 @@ export class UsuarioService {
   }
 
   registro(usuario: string, contrasena: string): Observable<any> {
-    return this.http.post<any>(`${this.apiUrl}/signin`, { "usuario": usuario, "contrasena": contrasena })  }
+    return this.http.post<any>(`${this.apiUrl}/signin`, 
+    { "rol": "administrador",
+      "usuario": usuario, 
+      "contrasena": contrasena 
+    })
+  }
+
+  registroPropietario(
+    usuario: string, 
+    contrasena: string,
+    nombre:string,
+    apellidos:string,
+    tipoIdentificacion:string,
+    numeroIdentificacion:string,
+    correo:string,
+    celular:string
+    ): Observable<any> {
+      return this.http.post<any>(`${this.apiUrl}/signin`, 
+      { "rol": "administrador",
+        "usuario": usuario, 
+        "contrasena": contrasena,
+        "nombre": nombre,
+        "apellidos": apellidos,
+        "tipoIdentificacion": tipoIdentificacion,
+        "numeroIdentificacion": numeroIdentificacion,
+        "correo": correo,
+        "celular": celular
+      })
+  }
 
 }
