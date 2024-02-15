@@ -34,6 +34,7 @@ export class UsuarioRegistroComponent implements OnInit {
       tipoIdentificacion: ['', Validators.required],
       numeroIdentificacion: ['', [Validators.required, Validators.maxLength(30)]],
       correo: ['', [Validators.required, Validators.email, Validators.maxLength(100)]],
+      celular: ['', [Validators.required, Validators.maxLength(10)]],
     });
   }
 
