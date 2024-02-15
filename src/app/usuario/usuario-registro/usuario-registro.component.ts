@@ -67,17 +67,18 @@ export class UsuarioRegistroComponent implements OnInit {
   }
 
   esPropietario(): boolean {
-    return this.tipoUsuarioSeleccionado === 'Propietario';
+    return this.tipoUsuarioSeleccionado === 'PROPIETARIO';
   }
 
   esAdministrador(): boolean {
-    return this.tipoUsuarioSeleccionado === 'Administrador';
+    return this.tipoUsuarioSeleccionado === 'ADMINISTRADOR';
   }
 
   registrarUsuario() {
 
     if (this.esAdministrador()) {
       this.usuarioService.registro(
+        this.tipoUsuarioSeleccionado,
         this.usuarioForm.get('usuario')?.value, 
         this.usuarioForm.get('password')?.value)
       .subscribe(res => {
@@ -90,6 +91,7 @@ export class UsuarioRegistroComponent implements OnInit {
 
     if (this.esPropietario()) {
       this.usuarioService.registroPropietario(
+        this.tipoUsuarioSeleccionado,
         this.usuarioForm.get('usuario')?.value, 
         this.usuarioForm.get('password')?.value,
         this.usuarioForm.get('nombre')?.value,

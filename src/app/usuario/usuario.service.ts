@@ -17,15 +17,16 @@ export class UsuarioService {
     return this.http.post<any>(`${this.apiUrl}/login`, { "usuario": usuario, "contrasena": contrasena });
   }
 
-  registro(usuario: string, contrasena: string): Observable<any> {
+  registro(rol:string, usuario: string, contrasena: string): Observable<any> {
     return this.http.post<any>(`${this.apiUrl}/signin`, 
-    { "rol": "administrador",
+    { "rol": rol,
       "usuario": usuario, 
       "contrasena": contrasena 
     })
   }
 
   registroPropietario(
+    rol:string,
     usuario: string, 
     contrasena: string,
     nombre:string,
@@ -36,13 +37,13 @@ export class UsuarioService {
     celular:string
     ): Observable<any> {
       return this.http.post<any>(`${this.apiUrl}/signin`, 
-      { "rol": "administrador",
+      { "rol": rol,
         "usuario": usuario, 
         "contrasena": contrasena,
         "nombre": nombre,
         "apellidos": apellidos,
         "tipoIdentificacion": tipoIdentificacion,
-        "numeroIdentificacion": numeroIdentificacion,
+        "identificacion": numeroIdentificacion,
         "correo": correo,
         "celular": celular
       })
