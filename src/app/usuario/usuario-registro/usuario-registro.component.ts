@@ -31,6 +31,7 @@ export class UsuarioRegistroComponent implements OnInit {
       confirmPassword: ["", [Validators.required, Validators.maxLength(50), Validators.minLength(4)]],
       nombre: ['', [Validators.required, Validators.maxLength(50)]],
       apellidos: ['', [Validators.required, Validators.maxLength(50)]],
+      tipoIdentificacion: ['', Validators.required],
     });
   }
 
