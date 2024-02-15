@@ -32,6 +32,7 @@ export class UsuarioRegistroComponent implements OnInit {
       nombre: ['', [Validators.required, Validators.maxLength(50)]],
       apellidos: ['', [Validators.required, Validators.maxLength(50)]],
       tipoIdentificacion: ['', Validators.required],
+      numeroIdentificacion: ['', [Validators.required, Validators.maxLength(30)]],
     });
   }
 
