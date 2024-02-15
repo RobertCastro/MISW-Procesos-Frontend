@@ -12,6 +12,7 @@ import { UsuarioService } from '../usuario.service';
 export class UsuarioRegistroComponent implements OnInit {
 
   usuarioForm: FormGroup;
+  tipoUsuarioSeleccionado: string;
 
   constructor(
     private usuarioService: UsuarioService,
@@ -24,6 +25,8 @@ export class UsuarioRegistroComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.tipoUsuarioSeleccionado = '';
+
     this.usuarioForm = this.formBuilder.group({
       tipoUsuario: ['', Validators.required],
       usuario: ["", [Validators.required, Validators.maxLength(50)]],
@@ -36,6 +39,10 @@ export class UsuarioRegistroComponent implements OnInit {
       correo: ['', [Validators.required, Validators.email, Validators.maxLength(100)]],
       celular: ['', [Validators.required, Validators.maxLength(10)]],
     });
+  }
+
+  onChangeTipoUsuario(event): void {
+    this.tipoUsuarioSeleccionado = event.target.value;
   }
 
   registrarUsuario() {
