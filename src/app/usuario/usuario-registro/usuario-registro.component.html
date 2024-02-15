@@ -67,11 +67,11 @@
               La contraseña no debe exceder los 50 carácteres
             </div>
             <div class="alert alert-danger my-3" *ngIf="usuarioForm.get('confirmPassword')?.hasError('minlength')">
-              La contraseña debe tener más de 4 carácteres
+              La contraseña debe tener más de 4 carácteres.
             </div>
             <div class="alert alert-danger my-3"
               *ngIf="usuarioForm.get('confirmPassword')?.value !== usuarioForm.get('password')?.value">
-              Las contraseñas no coinciden
+              Las contraseñas no coinciden.
             </div>
           </div>
 
