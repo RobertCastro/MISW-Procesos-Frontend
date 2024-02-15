@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { PropiedadService } from '../propiedad.service';
 import { Propiedad } from '../propiedad';
 
@@ -14,6 +14,16 @@ export class PropiedadDetalleComponent implements OnInit {
   constructor(private propiedadService: PropiedadService) { }
 
   ngOnInit(): void {
+    this.loadPropertyDetails();
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['propiedadId']) {
+      this.loadPropertyDetails();
+    }
+  }
+
+  loadPropertyDetails() {
     if (this.propiedadId) {
       this.cargarDetallePropiedad(this.propiedadId);
     }
