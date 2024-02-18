@@ -1,3 +1,4 @@
+//comentario prueba borrar en cualquier momento
 export class Movimiento {
     valor: number;
     id_propiedad: number;
