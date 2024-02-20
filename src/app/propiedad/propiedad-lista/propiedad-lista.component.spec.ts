@@ -1,3 +1,5 @@
+//it runs with ng test --include='src\app\propiedad\propiedad-lista\propiedad-lista.component.spec.ts' 
+
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { PropiedadListaComponent } from './propiedad-lista.component';
 import { ActivatedRoute } from '@angular/router';
@@ -102,5 +104,21 @@ describe('PropiedadListaComponent', () => {
     const button = fixture.debugElement.query(By.css('[test-id="bot_ver"]'));
     expect(button).toBeTruthy();
   });
+
+  it('should  have button with test_id="bot_editar"', () => {
+    const button = fixture.debugElement.query(By.css('[test-id="bot_editar"]'));
+    expect(button).toBeTruthy();
+  });
+
+  it('should  have button with test_id="bot_eliminar"', () => {
+    const button = fixture.debugElement.query(By.css('[test-id="bot_borrar"]'));
+    expect(button).toBeTruthy();
+  });
+
+  it('should  have button with test_id="bot_movimientos"', () => {
+    const button = fixture.debugElement.query(By.css('[test-id="bot_movimientos"]'));
+    expect(button).toBeTruthy();
+  });
+
 
 });
