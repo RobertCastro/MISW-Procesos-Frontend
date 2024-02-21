@@ -24,6 +24,7 @@ export class UsuarioLoginComponent implements OnInit {
     sessionStorage.setItem('decodedToken', '');
     sessionStorage.setItem('token', '');
     sessionStorage.setItem('idUsuario', '');
+    sessionStorage.setItem('rol', '');
   }
 
   loginUsuario(usuario: string, contrasena: string) {
@@ -34,6 +35,7 @@ export class UsuarioLoginComponent implements OnInit {
         sessionStorage.setItem('decodedToken', this.helper.decodeToken(res.token));
         sessionStorage.setItem('token', res.token);
         sessionStorage.setItem('idUsuario', res.id);
+        sessionStorage.setItem('rol', res.rol);
         this.toastrService.success("Login ok", "Información", {closeButton: true});
         this.router.navigate([`/propiedades`])
       },

@@ -41,6 +41,10 @@ export class PropiedadListaComponent implements OnInit {
   ngOnInit() {
     this.propiedadService.darPropiedades().subscribe((propiedades) => {
       this.propiedades = propiedades;
+      var rol=sessionStorage.getItem('rol');
+      if (rol === "PROPIETARIO") {
+        this.usuarioEsPropietario = true;
+      }
     },
     error => {
       if (error.statusText === "UNAUTHORIZED") {
