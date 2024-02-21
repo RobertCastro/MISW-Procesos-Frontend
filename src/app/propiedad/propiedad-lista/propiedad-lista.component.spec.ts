@@ -126,8 +126,10 @@ describe('PropiedadListaComponent', () => {
   });
 
   it('no debe tener boton test_id="bot_editar" cuando el usuario es propietario', () => {
+    component.usuarioEsPropietario=true;
+    fixture.detectChanges();
     
-    if (component.esPropietario ){
+    if (component.usuarioEsPropietario ){
       const button = fixture.debugElement.query(By.css('[test-id="bot_editar"]'));
       expect(button).toBeFalsy();
     }

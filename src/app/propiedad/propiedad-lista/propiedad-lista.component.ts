@@ -18,6 +18,8 @@ export class PropiedadListaComponent implements OnInit {
 
   propiedadSeleccionadaId: number;
 
+  usuarioEsPropietario: boolean = false;
+  
   constructor(
     private routerPath: Router,
     private router: ActivatedRoute,
