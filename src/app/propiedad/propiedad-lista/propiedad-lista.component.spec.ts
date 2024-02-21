@@ -1,3 +1,5 @@
+//it runs with ng test --include='src\app\propiedad\propiedad-lista\propiedad-lista.component.spec.ts' 
+
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { PropiedadListaComponent } from './propiedad-lista.component';
 import { ActivatedRoute } from '@angular/router';
@@ -101,6 +103,44 @@ describe('PropiedadListaComponent', () => {
   it('should  have button with test_id="bot_ver"', () => {
     const button = fixture.debugElement.query(By.css('[test-id="bot_ver"]'));
     expect(button).toBeTruthy();
+  });
+
+  it('should  have button with test_id="bot_editar"', () => {
+    const button = fixture.debugElement.query(By.css('[test-id="bot_editar"]'));
+    expect(button).toBeTruthy();
+  });
+
+  it('should  have button with test_id="bot_eliminar"', () => {
+    const button = fixture.debugElement.query(By.css('[test-id="bot_borrar"]'));
+    expect(button).toBeTruthy();
+  });
+
+  it('should  have button with test_id="bot_movimientos"', () => {
+    const button = fixture.debugElement.query(By.css('[test-id="bot_movimientos"]'));
+    expect(button).toBeTruthy();
+  });
+
+  it('should  have button with test_id="bot_editar"', () => {
+    const button = fixture.debugElement.query(By.css('[test-id="bot_editar"]'));
+    expect(button).toBeTruthy();
+  });
+
+  it('no debe tener boton test_id="bot_editar" o test_id="bot_borrar" cuando el usuario es propietario', () => {
+    component.usuarioEsPropietario=true;
+    fixture.detectChanges();
+    const button = fixture.debugElement.query(By.css('[test-id="bot_editar"]'));
+    const button2 = fixture.debugElement.query(By.css('[test-id="bot_borrar"]'));
+
+    if (component.usuarioEsPropietario ){
+      
+      expect(button).toBeFalsy();
+      expect(button2).toBeFalsy();
+    }
+    else {
+
+      expect(button).toBeTruthy();
+      expect(button2).toBeTruthy();
+    }
   });
 
 });
