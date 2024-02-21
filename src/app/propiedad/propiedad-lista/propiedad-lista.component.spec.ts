@@ -125,17 +125,23 @@ describe('PropiedadListaComponent', () => {
     expect(button).toBeTruthy();
   });
 
-  it('no debe tener boton test_id="bot_editar" cuando el usuario es propietario', () => {
+  it('no debe tener boton test_id="bot_editar" o test_id="bot_borrar" cuando el usuario es propietario', () => {
     component.usuarioEsPropietario=true;
     fixture.detectChanges();
-    
+
     if (component.usuarioEsPropietario ){
       const button = fixture.debugElement.query(By.css('[test-id="bot_editar"]'));
       expect(button).toBeFalsy();
+
+      const button2 = fixture.debugElement.query(By.css('[test-id="bot_borrar"]'));
+      expect(button2).toBeFalsy();
     }
     else {
       const button = fixture.debugElement.query(By.css('[test-id="bot_editar"]'));
       expect(button).toBeTruthy();
+
+      const button2 = fixture.debugElement.query(By.css('[test-id="bot_borrar"]'));
+      expect(button2).toBeTruthy();
     }
   });
 
