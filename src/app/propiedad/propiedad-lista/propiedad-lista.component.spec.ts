@@ -143,4 +143,17 @@ describe('PropiedadListaComponent', () => {
     }
   });
 
+  it(' debe tener boton con test-id="boton-crear-prop" cuando el usuario es ADMINISTRADOR', () => {
+    component.usuarioEsPropietario=false;
+    fixture.detectChanges();
+    const button = fixture.debugElement.query(By.css('[test-id="boton-crear-prop"]'));
+    expect(button).toBeTruthy();
+  });
+
+  it('no debe tener boton con test-id="boton-crear-prop" cuando el usuario es PROPIETARIO', () => {
+    component.usuarioEsPropietario=true;
+    fixture.detectChanges();
+    const button = fixture.debugElement.query(By.css('[test-id="boton-crear-prop"]'));
+    expect(button).toBeFalsy();
+  });
 });
