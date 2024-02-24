@@ -18,6 +18,8 @@ export class PropiedadListaComponent implements OnInit {
 
   propiedadSeleccionadaId: number;
 
+  usuarioEsPropietario: boolean = false;
+  
   constructor(
     private routerPath: Router,
     private router: ActivatedRoute,
@@ -39,6 +41,10 @@ export class PropiedadListaComponent implements OnInit {
   ngOnInit() {
     this.propiedadService.darPropiedades().subscribe((propiedades) => {
       this.propiedades = propiedades;
+      var rol=sessionStorage.getItem('rol');
+      if (rol === "PROPIETARIO") {
+        this.usuarioEsPropietario = true;
+      }
     },
     error => {
       if (error.statusText === "UNAUTHORIZED") {
