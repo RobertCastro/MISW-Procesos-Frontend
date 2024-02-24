@@ -2,7 +2,7 @@
 <h1>Propiedades</h1>
 <div class="row">
   <div class="col-md-4">
-    Propiedades <button type="button" [disabled]="false" class="btn btn-warning" (click)="crearPropiedad()"><i
+    Propiedades <button type="button" test-id="boton-crear-prop" *ngIf="usuarioEsPropietario == false" [disabled]="false" class="btn btn-warning" (click)="crearPropiedad()"><i
         class="bi bi-plus-circle"></i></button>
     <div>
       <table class="table" border="0">
