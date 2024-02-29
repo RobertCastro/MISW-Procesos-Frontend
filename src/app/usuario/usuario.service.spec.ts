@@ -7,6 +7,7 @@ import { UsuarioService } from './usuario.service';
 describe('UsuarioService', () => {
   let service: UsuarioService;
   let httpMock: HttpTestingController;
+  let apiUrl: string;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -15,6 +16,7 @@ describe('UsuarioService', () => {
     });
     service = TestBed.inject(UsuarioService);
     httpMock = TestBed.inject(HttpTestingController);
+    apiUrl = (Reflect as any).get(service, 'apiUrl');
   });
 
   afterEach(() => {
@@ -25,16 +27,17 @@ describe('UsuarioService', () => {
     expect(service).toBeTruthy();
   });
 
-  it(' listarPropietarios() should return data', () => {
-    const mockPropietarios = [
-      { id: 1, nombre: 'Juan', apellidos: 'Perez', tipoIdentificacion: 'CC', identificacion: '123456789'}
-    ];
-
+  it('should retrieve propietarios from API via GET', () => {
+    const mockPropietarios: string[] = ['propietario1', 'propietario2', 'propietario3'];
     service.listarPropietarios().subscribe(prop => {
-      expect(prop.length).toBe(1);
-      expect(prop).toEqual(mockPropietarios);
+    expect(prop).toEqual(mockPropietarios);
     });
 
+    const req = httpMock.expectOne(apiUrl + `/propietarios`);
+    expect(req.request.method).toBe('GET');
+
+    req.flush(mockPropietarios);
+  });
 
   
 });
