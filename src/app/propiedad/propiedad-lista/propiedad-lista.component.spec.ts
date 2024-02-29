@@ -1,3 +1,5 @@
+//it runs with ng test --include='src\app\propiedad\propiedad-lista\propiedad-lista.component.spec.ts' 
+
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { PropiedadListaComponent } from './propiedad-lista.component';
 import { ActivatedRoute } from '@angular/router';
@@ -103,4 +105,55 @@ describe('PropiedadListaComponent', () => {
     expect(button).toBeTruthy();
   });
 
+  it('should  have button with test_id="bot_editar"', () => {
+    const button = fixture.debugElement.query(By.css('[test-id="bot_editar"]'));
+    expect(button).toBeTruthy();
+  });
+
+  it('should  have button with test_id="bot_eliminar"', () => {
+    const button = fixture.debugElement.query(By.css('[test-id="bot_borrar"]'));
+    expect(button).toBeTruthy();
+  });
+
+  it('should  have button with test_id="bot_movimientos"', () => {
+    const button = fixture.debugElement.query(By.css('[test-id="bot_movimientos"]'));
+    expect(button).toBeTruthy();
+  });
+
+  it('should  have button with test_id="bot_editar"', () => {
+    const button = fixture.debugElement.query(By.css('[test-id="bot_editar"]'));
+    expect(button).toBeTruthy();
+  });
+
+  it('no debe tener boton test_id="bot_editar" o test_id="bot_borrar" cuando el usuario es propietario', () => {
+    component.usuarioEsPropietario=true;
+    fixture.detectChanges();
+    const button = fixture.debugElement.query(By.css('[test-id="bot_editar"]'));
+    const button2 = fixture.debugElement.query(By.css('[test-id="bot_borrar"]'));
+
+    if (component.usuarioEsPropietario ){
+      
+      expect(button).toBeFalsy();
+      expect(button2).toBeFalsy();
+    }
+    else {
+
+      expect(button).toBeTruthy();
+      expect(button2).toBeTruthy();
+    }
+  });
+
+  it(' debe tener boton con test-id="boton-crear-prop" cuando el usuario es ADMINISTRADOR', () => {
+    component.usuarioEsPropietario=false;
+    fixture.detectChanges();
+    const button = fixture.debugElement.query(By.css('[test-id="boton-crear-prop"]'));
+    expect(button).toBeTruthy();
+  });
+
+  it('no debe tener boton con test-id="boton-crear-prop" cuando el usuario es PROPIETARIO', () => {
+    component.usuarioEsPropietario=true;
+    fixture.detectChanges();
+    const button = fixture.debugElement.query(By.css('[test-id="boton-crear-prop"]'));
+    expect(button).toBeFalsy();
+  });
 });

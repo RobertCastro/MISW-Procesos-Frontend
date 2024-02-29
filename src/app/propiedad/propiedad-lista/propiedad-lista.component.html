@@ -2,7 +2,7 @@
 <h1>Propiedades</h1>
 <div class="row">
   <div class="col-md-4">
-    Propiedades <button type="button" [disabled]="false" class="btn btn-warning" (click)="crearPropiedad()"><i
+    Propiedades <button type="button" test-id="boton-crear-prop" *ngIf="usuarioEsPropietario == false" [disabled]="false" class="btn btn-warning" (click)="crearPropiedad()"><i
         class="bi bi-plus-circle"></i></button>
     <div>
       <table class="table" border="0">
@@ -16,9 +16,9 @@
             <td>
               <button (click)="verDetalle(propiedad.id)"  [disabled]="false" type="button" class="btn btn-success" test-id="bot_ver"><i
                   class="bi bi-eye"></i></button>&nbsp;
-              <button [disabled]="false" type="button" class="btn btn-primary" test-id="bot_editar"
+              <button [disabled]="false" *ngIf="usuarioEsPropietario == false" type="button" class="btn btn-primary" test-id="bot_editar"
                 (click)="editarPropiedad(propiedad.id)"><i class="bi bi-pencil"></i></button>&nbsp;
-              <button [disabled]="false" type="button" class="btn btn-danger" test-id="bot_borrar"
+              <button [disabled]="false" *ngIf="usuarioEsPropietario == false" type="button" class="btn btn-danger" test-id="bot_borrar"
                 (click)="borrarPropiedad(propiedad.id)"><i class="bi bi-trash"></i></button>&nbsp;
               <button [disabled]="false" type="button" class="btn btn-warning" test-id="bot_movimientos"
                 (click)="movimientos(propiedad.id)"><i class="bi bi-cash-coin"></i></button>
