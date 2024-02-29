@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient,HttpHeaders } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
-import { Usuario } from './usuario';
+import { Propietario } from './usuario';
 
 import { environment } from '../../environments/environment'
 
@@ -49,10 +49,12 @@ export class UsuarioService {
       })
   }
 
-  listarPropietarios(): Observable<string[]> {
+  listarPropietarios(): Observable<Propietario[]> {
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${sessionStorage.getItem('token')}`
     })
-    return this.http.get<string[]>(`${this.apiUrl}/propietarios`, { headers: headers });
+    return this.http.get<Propietario[]>(`${this.apiUrl}/propietarios`, { headers: headers });
+    //retorno un observable de un array de strings
+    //return of(['Propietario 1', 'Propietario 2', 'Propietario 3']);
   }
 }

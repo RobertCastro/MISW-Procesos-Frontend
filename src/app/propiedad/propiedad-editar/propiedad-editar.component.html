@@ -96,13 +96,14 @@
       <!--Nombre propietario-->
       <div class="form-group mx-sm-3 mb-2">
         <label for="nombre-propietario">Nombre Propietario</label>
-        <input
-          novalidate
+        <select
+          formControlName="nombre_propietario"
           id="nombre_propietario"
           class="form-control"
-          formControlName="nombre_propietario"
           placeholder="Nombre propietario"
-        />
+        >
+          <option *ngFor="let propietario of listaPropietarios" [ngValue]="propietario.nombre">{{propietario.nombre}}</option>     
+        </select>
         <div
           class="alert alert-danger alert-dismissible fade show"
           *ngIf="

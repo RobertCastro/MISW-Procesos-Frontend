@@ -6,6 +6,8 @@ import { Propiedad } from '../propiedad';
 import { PropiedadService } from '../propiedad.service';
 import { EnumsService } from 'src/app/enums.service';
 import { Banco } from 'src/app/enums';
+import { UsuarioService } from 'src/app/usuario/usuario.service';
+import { Propietario } from 'src/app/usuario/usuario';
 
 @Component({
   selector: 'app-propiedad-editar',
@@ -18,6 +20,7 @@ export class PropiedadEditarComponent implements OnInit {
   propiedadForm: FormGroup = {} as FormGroup
   listaBancos: Banco[]
   idPropiedad: number;
+  listaPropietarios: Propietario[] = [];
 
   constructor(
     private formBuilder: FormBuilder,
@@ -25,7 +28,9 @@ export class PropiedadEditarComponent implements OnInit {
     private routerPath: Router,
     private toastr: ToastrService,
     private propiedadService: PropiedadService,
-    private enumService: EnumsService
+    private enumService: EnumsService,
+    private usuarioService: UsuarioService
+
   ) {
     this.propiedadForm = this.formBuilder.group({
       nombre_propiedad: ["", Validators.required],
@@ -45,6 +50,13 @@ export class PropiedadEditarComponent implements OnInit {
 
     this.enumService.bancos().subscribe((bancos) => {
       this.listaBancos = bancos;
+    });
+
+    //this.listaPropietarios=["Propietario 1", "Propietario 2", "Propietario 3"]
+    this.usuarioService.listarPropietarios().subscribe((propietarios) => {
+    console.log("Propietarios")
+    console.log(propietarios)
+    this.listaPropietarios = propietarios;
     });
 
     this.propiedadService.darPropiedad(this.idPropiedad).subscribe((propiedad) => {

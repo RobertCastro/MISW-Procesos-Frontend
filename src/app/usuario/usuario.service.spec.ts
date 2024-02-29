@@ -3,6 +3,7 @@
 import { TestBed, inject } from '@angular/core/testing';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { UsuarioService } from './usuario.service';
+import { Propietario } from './usuario';
 
 describe('UsuarioService', () => {
   let service: UsuarioService;
@@ -28,7 +29,8 @@ describe('UsuarioService', () => {
   });
 
   it('should retrieve propietarios from API via GET', () => {
-    const mockPropietarios: string[] = ['propietario1', 'propietario2', 'propietario3'];
+    const mockPropietarios: Propietario[] = [{'nombre':'propietario1'},{'nombre':'propietario2'},{'nombre':'propietario3'}];
+    
     service.listarPropietarios().subscribe(prop => {
     expect(prop).toEqual(mockPropietarios);
     });
