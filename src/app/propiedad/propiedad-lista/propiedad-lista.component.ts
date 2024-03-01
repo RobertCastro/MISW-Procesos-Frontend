@@ -15,10 +15,9 @@ export class PropiedadListaComponent implements OnInit {
   propiedadElegida: Propiedad
   mostrarDetalleComponente: boolean = false;
   mostrarCrearComponente: boolean = false;
-
   propiedadSeleccionadaId: number;
-
   usuarioEsPropietario: boolean = false;
+  mostrarMantenimientosComponent: boolean = false;
   
   constructor(
     private routerPath: Router,
@@ -96,6 +95,12 @@ export class PropiedadListaComponent implements OnInit {
         this.toastr.error("Error","Ha ocurrido un error. " + error.message)
       }
     });
+  }
+
+  verMovimientos(id: number): void {
+    this.propiedadSeleccionadaId = id;
+    // console.log("id: " + id);
+    this.mostrarMantenimientosComponent = true;
   }
 
 }

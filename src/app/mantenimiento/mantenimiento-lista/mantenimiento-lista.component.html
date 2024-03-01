@@ -1,0 +1,36 @@
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <h3>Información de la propiedad</h3>
+
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <h3>Mantenimientos</h3>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Tipo</th>
+            <th>Costo</th>
+            <th>Periodicidad</th>
+            <th>Estado</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let mantenimiento of mantenimientos">
+            <td>{{mantenimiento.tipo_mantenimiento}}</td>
+            <td>{{mantenimiento.costo}}</td>
+            <td>{{mantenimiento.periodicidad}}</td>
+            <td>{{mantenimiento.estado}}</td>
+            <td>
+              <button class="btn btn-primary">Editar</button>
+              <button class="btn btn-danger">Eliminar</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
