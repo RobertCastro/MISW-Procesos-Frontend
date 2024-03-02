@@ -1,14 +1,34 @@
 <div class="container">
-  <div class="row">
+  <div class="row border rounded border-1  pt-2">
     <div class="col">
-      <h3>Información de la propiedad</h3>
-
+      <h4 class="px-2">Información de la propiedad</h4>
+      <table class="table" *ngIf="propiedad">
+        <thead>
+          <tr>
+            <th>Nombre</th>
+            <th>Dirección</th>
+            <th>Nombre propietario</th>
+            <th>Número de contacto</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>{{ propiedad.nombre_propiedad }}</td>
+            <td>{{ propiedad.direccion }}</td>
+            <td>{{ propiedad.nombre_propietario }}</td>
+            <td>{{ propiedad.numero_contacto }}</td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   </div>
-  <div class="row">
+  <div class="row border rounded border-1 mt-5 pt-2">
     <div class="col">
-      <h3>Mantenimientos</h3>
-      <table class="table">
+      <h4 class="px-2">Mantenimientos</h4>
+      <div *ngIf="mantenimientos.length === 0">
+        <p>La propiedad no tiene mantenimientos registrados</p>
+      </div>
+      <table class="table" *ngIf="mantenimientos.length > 0">
         <thead>
           <tr>
             <th>Tipo</th>
@@ -23,10 +43,15 @@
             <td>{{mantenimiento.tipo_mantenimiento}}</td>
             <td>{{mantenimiento.costo}}</td>
             <td>{{mantenimiento.periodicidad}}</td>
-            <td>{{mantenimiento.estado}}</td>
+            <td *ngIf="mantenimiento.estado; else pendiente">Realizado</td>
+            <ng-template #pendiente>Pendiente</ng-template>
             <td>
-              <button class="btn btn-primary">Editar</button>
-              <button class="btn btn-danger">Eliminar</button>
+              <button [disabled]="false" type="button" class="btn btn-primary m-2" test-id="btn_movimientos_del">
+                <i class="bi bi-pencil"></i>
+              </button>
+              <button [disabled]="false" type="button" class="btn btn-danger" test-id="btn_movimientos_del">
+                <i class="bi bi-trash"></i>
+              </button>
             </td>
           </tr>
         </tbody>
