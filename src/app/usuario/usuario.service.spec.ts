@@ -29,7 +29,7 @@ describe('UsuarioService', () => {
   });
 
   it('should retrieve propietarios from API via GET', () => {
-    const mockPropietarios: Propietario[] = [{'nombre':'propietario1'},{'nombre':'propietario2'},{'nombre':'propietario3'}];
+    const mockPropietarios: Propietario[] = [{'nombre':'propietario1','celular':'1'},{'nombre':'propietario2','celular':'2'},{'nombre':'propietario3','celular':'3'}];
     
     service.listarPropietarios().subscribe(prop => {
     expect(prop).toEqual(mockPropietarios);
