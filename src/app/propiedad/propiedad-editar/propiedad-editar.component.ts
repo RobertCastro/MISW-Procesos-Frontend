@@ -21,6 +21,7 @@ export class PropiedadEditarComponent implements OnInit {
   listaBancos: Banco[]
   idPropiedad: number;
   listaPropietarios: Propietario[] = [];
+  numero_contacto_seleccionado: string;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -45,30 +46,26 @@ export class PropiedadEditarComponent implements OnInit {
    }
 
   ngOnInit() {
-
+    
     this.idPropiedad = parseInt(this.router.snapshot.params['id']);
 
     this.enumService.bancos().subscribe((bancos) => {
       this.listaBancos = bancos;
     });
 
-    //this.listaPropietarios=["Propietario 1", "Propietario 2", "Propietario 3"]
     this.usuarioService.listarPropietarios().subscribe((propietarios) => {
-    console.log("Propietarios")
-    console.log(propietarios)
     this.listaPropietarios = propietarios;
     });
 
     this.propiedadService.darPropiedad(this.idPropiedad).subscribe((propiedad) => {
       this.propiedad = propiedad
-
+      this.numero_contacto_seleccionado = propiedad.numero_contacto;
       this.propiedadForm = this.formBuilder.group({
           nombre_propiedad: [this.propiedad.nombre_propiedad, Validators.required],
           ciudad: [this.propiedad.ciudad, Validators.required],
           municipio: [this.propiedad.municipio, []],
           direccion: [this.propiedad.direccion, Validators.required],
           nombre_propietario: [this.propiedad.nombre_propietario, Validators.required],
-          numero_contacto: [this.propiedad.numero_contacto, Validators.required],
           banco: [this.propiedad.banco, []],
           numero_cuenta: [this.propiedad.numero_cuenta, []]
         });
@@ -101,6 +98,12 @@ export class PropiedadEditarComponent implements OnInit {
   cancelarPropiedad(): void {
     this.propiedadForm.reset();
     this.routerPath.navigate(['/propiedades/']);
+  }
+
+  onPropietarioSelected(event: any) {
+    console.log(event);
+    const indice_seleccionado=event.target.value.split(':')[0];
+    this.numero_contacto_seleccionado = this.listaPropietarios[indice_seleccionado].celular;
   }
 
 }

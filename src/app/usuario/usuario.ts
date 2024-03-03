@@ -13,7 +13,7 @@ export class Propietario {
     //contrasena : string;
     nombre :string
     //apellidos :string
-    //celular :string
+    celular :string
     //correo :string
     //tipo_id :string
     //identificacion :string

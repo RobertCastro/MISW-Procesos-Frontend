@@ -101,6 +101,7 @@
           id="nombre_propietario"
           class="form-control"
           placeholder="Nombre propietario"
+          (change)="onPropietarioSelected($event)"
         >
           <option *ngFor="let propietario of listaPropietarios" [ngValue]="propietario.nombre">{{propietario.nombre}}</option>     
         </select>
@@ -119,21 +120,14 @@
       <div class="form-group mx-sm-3 mb-2">
         <label for="numero-contacto">Número de contacto</label>
         <input
-          novalidate
           id="numero_contacto"
           class="form-control"
           formControlName="numero_contacto"
-          placeholder="Número de contacto"
+          [placeholder]="numero_contacto_seleccionado"
+          [attr.disabled]="true"   
         />
-        <div
-          class="alert alert-danger alert-dismissible fade show"
-          *ngIf="
-            propiedadForm.get('numero_contacto')!.hasError('required') &&
-            propiedadForm.get('numero_contacto')!.touched
-          "
-        >
-          Contenido requerido
-        </div>
+       
+          
       </div>
 
       <!--Banco-->
