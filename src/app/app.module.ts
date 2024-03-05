@@ -11,6 +11,7 @@ import { UsuarioModule } from './usuario/usuario.module';
 import { PropiedadModule } from './propiedad/propiedad.module';
 import { ReservaModule } from './reserva/reserva.module';
 import { MovimientoModule } from './movimiento/movimiento.module';
+import { SharedModule } from './shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { MovimientoModule } from './movimiento/movimiento.module';
     PropiedadModule,
     ReservaModule,
     MovimientoModule,
+    SharedModule,
     ToastrModule.forRoot({
       timeOut: 7000,
       positionClass: 'toast-bottom-right',

@@ -1,0 +1,29 @@
+<app-encabezado></app-encabezado>
+<h1>Crear Mantenimiento</h1>
+
+<form [formGroup]="mantenimientoForm" (ngSubmit)="crearMantenimiento()">
+  <label>
+    Tipo Mantenimiento:
+    <input type="text" formControlName="tipo_mantenimiento" class="form-control" id="tipo_mantenimiento" placeholder="Tipo Mantenimiento">
+  </label>
+  <br>
+  <label>
+    Costo:
+    <input type="number" formControlName="costo"  class="form-control" id="costo" placeholder="costo">
+  </label>
+  <br>
+  <label>
+    Periodicidad:
+    <input type="text" formControlName="periodicidad" class="form-control" id="periodicidad" placeholder="Periodicidad">
+  </label>
+  <br>
+  <label>
+    Estado:
+    <input type="text" formControlName="estado" class="form-control" id="estado" placeholder="Estado">
+  </label>
+  <br/>
+  <br>
+  <button type="submit" class="btn btn-primary" [disabled]="!mantenimientoForm.valid">Guardar</button>&nbsp;
+  <button type="button" class="btn btn-danger ml-3" (click)="cancelarCrearMantenimiento()">Cancelar</button>
+
+</form>

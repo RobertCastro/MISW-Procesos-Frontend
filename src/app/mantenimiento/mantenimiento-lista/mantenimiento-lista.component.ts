@@ -1,4 +1,5 @@
 import { Component, Input, OnChanges, SimpleChanges, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { MantenimientoService } from '../mantenimiento.service';
 import { Mantenimiento } from '../mantenimiento';
@@ -13,14 +14,19 @@ export class MantenimientoListaComponent implements OnInit, OnChanges {
   @Input() propiedadId: number;
   mantenimientos: Array<Mantenimiento>;
   propiedad: any;
+  usuarioEsPropietario: boolean = true;
 
   constructor(
+    private routerPath: Router,
     private toastr: ToastrService,
     private mantenimientoService: MantenimientoService,
     private propiedadService: PropiedadService
   ) { }
 
   ngOnInit() {
+    if (sessionStorage.getItem('rol') == "ADMINISTRADOR"){
+      this.usuarioEsPropietario = false;
+    }
     this.cargarMantenimientos();
   }
 
@@ -52,6 +58,10 @@ export class MantenimientoListaComponent implements OnInit, OnChanges {
     }, error => {
       this.toastr.error("Error", "Ha ocurrido un error al cargar los detalles de la propiedad. " + error.message);
     });
+  }
+
+  crearMantenimiento(){
+    this.routerPath.navigate(['/mantenimientos/crear']);
   }
   
 }
