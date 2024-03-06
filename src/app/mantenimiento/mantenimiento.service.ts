@@ -30,5 +30,13 @@ export class MantenimientoService {
     return this.http.post<Mantenimiento>(`${this.apiUrl}/propiedades/${idPropiedad}/mantenimiento`, mantenimiento, { headers: headers });
   }
 
+  //TODO: ajustar dado que el input es distinto a crear mantenimiento
+  editarMantenimiento(mantenimiento: Mantenimiento, idPropiedad: number): Observable<Mantenimiento> {
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${sessionStorage.getItem('token')}`
+    });
+    return this.http.put<Mantenimiento>(`${this.apiUrl}/propiedades/${idPropiedad}/mantenimiento`, mantenimiento, { headers: headers });
+  }
+
 
 }
