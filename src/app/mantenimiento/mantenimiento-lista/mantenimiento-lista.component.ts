@@ -63,5 +63,9 @@ export class MantenimientoListaComponent implements OnInit, OnChanges {
   crearMantenimiento(){
     this.routerPath.navigate(['/mantenimientos/crear']);
   }
+
+  editarMantenimiento(){
+    this.routerPath.navigate(['/mantenimientos/editar']);
+  }
   
 }

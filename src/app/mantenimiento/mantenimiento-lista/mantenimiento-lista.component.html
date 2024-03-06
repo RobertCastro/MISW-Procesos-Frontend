@@ -47,10 +47,10 @@
             <td *ngIf="mantenimiento.estado; else pendiente">Realizado</td>
             <ng-template #pendiente>Pendiente</ng-template>
             <td>
-              <button [disabled]="false" type="button" class="btn btn-primary m-2" test-id="btn_movimientos_del">
+              <button [disabled]="false" type="button" class="btn btn-primary m-2" (click)="editarMantenimiento()" test-id="btn_mantenimientos_editar">
                 <i class="bi bi-pencil"></i>
               </button>
-              <button [disabled]="false" type="button" class="btn btn-danger" test-id="btn_movimientos_del">
+              <button [disabled]="false" type="button" class="btn btn-danger" test-id="btn_mantenimientos_del">
                 <i class="bi bi-trash"></i>
               </button>
             </td>
