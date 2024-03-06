@@ -23,5 +23,12 @@ export class MantenimientoService {
     return this.http.get<Mantenimiento[]>(`${this.apiUrl}/propiedades/${idPropiedad}/mantenimientos`, { headers: headers });
   }
 
+  crearMantenimiento(mantenimiento: Mantenimiento, idPropiedad: number): Observable<Mantenimiento> {
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${sessionStorage.getItem('token')}`
+    });
+    return this.http.post<Mantenimiento>(`${this.apiUrl}/propiedades/${idPropiedad}/mantenimiento`, mantenimiento, { headers: headers });
+  }
+
 
 }
