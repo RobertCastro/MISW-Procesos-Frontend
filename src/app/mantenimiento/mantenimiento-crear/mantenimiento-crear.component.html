@@ -1,0 +1,81 @@
+<app-encabezado></app-encabezado>
+<h1>Crear Mantenimiento</h1>
+
+<form 
+    [formGroup]="mantenimientoForm"
+    (ngSubmit)="!mantenimientoForm.invalid && crearMantenimiento(mantenimientoForm.value)">
+  <div class="row">
+    <div class="col col-6">
+
+      <div class="form-group mx-sm-3 mb-2">
+        <label>Tipo de Mantenimiento:</label>
+          <select
+            formControlName="tipo_mantenimiento"
+            class="form-control" id="tipo_mantenimiento">
+              <option [ngValue]="null" disabled>Elegir tipo de mantenimiento</option>
+              <option *ngFor="let tipoMantenimiento of tiposMantenimientos" [ngValue]="tipoMantenimiento">{{tiposMantenimientos}}</option>
+          </select>
+       <div
+          class="alert alert-danger alert-dismissible fade show"
+          *ngIf="
+          mantenimientoForm.get('tipo_mantenimiento')!.hasError('required') &&
+          mantenimientoForm.get('tipo_mantenimiento')!.touched
+          "
+        >
+          Contenido requerido
+        </div>
+      </div>
+
+
+      <div class="form-group mx-sm-3 mb-2">
+        <label for="costo">
+          Costo: </label>
+          <input type="number" formControlName="costo"  class="form-control" formControlName="costo" id="costo" placeholder="costo">
+        <div
+        class="alert alert-danger alert-dismissible fade show"
+        *ngIf="
+            mantenimientoForm.get('costo')!.hasError('required') &&
+            mantenimientoForm.get('costo')!.touched
+          ">
+          Contenido requerido
+        </div>
+      </div>
+
+      <div class="form-group mx-sm-3 mb-2">
+        <label>Periodicidad:</label>
+          <select
+            formControlName="periodicidad"
+            class="form-control" id="periodicidad">
+              <option [ngValue]="null" disabled>Elegir periodicidad</option>
+              <option *ngFor="let periodicidad of listaPeriocidad" [ngValue]="periodicidad">{{listaPeriocidad}}</option>
+          </select>
+        <div
+        class="alert alert-danger alert-dismissible fade show"
+        *ngIf="
+            mantenimientoForm.get('periodicidad')!.hasError('required') &&
+            mantenimientoForm.get('periodicidad')!.touched
+          ">
+          Contenido requerido
+        </div>
+      </div>
+
+      <div class="form-group mx-sm-3 mb-2">
+        <label>Estado:</label>
+          <input type="text" formControlName="estado" class="form-control" id="estado" placeholder="Estado">
+        <div
+        class="alert alert-danger alert-dismissible fade show"
+        *ngIf="
+            mantenimientoForm.get('estado')!.hasError('required') &&
+            mantenimientoForm.get('estado')!.touched
+          ">
+          Contenido requerido
+        </div>
+      </div>
+
+  </div>
+</div>
+
+  <button type="submit" class="btn btn-primary" [disabled]="!mantenimientoForm.valid">Guardar</button>&nbsp;
+  <button type="button" class="btn btn-danger ml-3" (click)="cancelarCrearMantenimiento()">Cancelar</button>
+
+</form>

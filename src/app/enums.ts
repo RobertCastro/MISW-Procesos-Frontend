@@ -10,3 +10,16 @@ export class TipoMovimiento {
         
     }
 }
+
+
+export class TipoMantenimitento {
+
+    public constructor() {
+    }
+}
+
+export class Periocidad {
+
+    public constructor() {
+    }
+}
