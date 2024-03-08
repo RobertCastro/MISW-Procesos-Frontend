@@ -61,7 +61,7 @@ export class MantenimientoEditarComponent implements OnInit {
     this.mantenimientoService.editarMantenimiento(mantenimiento, this.propiedadId).subscribe((mantenimiento) => {
       this.toastr.success("Confirmation", "Mantenimiento modificado")
       this.mantenimientoForm.reset();
-      // this.routerPath.navigate(['/propiedades/' + this.propiedadId + '/mantenimientos']);
+      this.routerPath.navigate(['/propiedades/' + this.propiedadId + '/mantenimientos']);
     },
     error => {
       if (error.statusText === "UNAUTHORIZED") {
