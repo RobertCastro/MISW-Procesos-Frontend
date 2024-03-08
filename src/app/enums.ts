@@ -18,7 +18,7 @@ export class TipoMantenimitento {
     }
 }
 
-export class Periocidad {
+export class TipoPeriodicidad {
 
     public constructor() {
     }

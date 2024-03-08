@@ -27,7 +27,7 @@ export class MantenimientoService {
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${sessionStorage.getItem('token')}`
     });
-    return this.http.post<Mantenimiento>(`${this.apiUrl}/propiedades/${idPropiedad}/mantenimiento`, mantenimiento, { headers: headers });
+    return this.http.post<Mantenimiento>(`${this.apiUrl}/propiedades/${idPropiedad}/mantenimientos`, mantenimiento, { headers: headers });
   }
 
 
