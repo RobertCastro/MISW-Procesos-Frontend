@@ -6,7 +6,7 @@ import { MantenimientoService } from '../mantenimiento.service';
 import { Mantenimiento } from '../mantenimiento';
 import { EnumsService } from 'src/app/enums.service';
 import { TipoMantenimitento } from 'src/app/enums';
-import { Periocidad } from 'src/app/enums';
+import { TipoPeriodicidad } from 'src/app/enums';
 import { PropiedadService } from 'src/app/propiedad/propiedad.service';
 
 @Component({
@@ -19,7 +19,7 @@ export class MantenimientoEditarComponent implements OnInit {
   mantenimientoForm: FormGroup;
   propiedad: any;
   tiposMantenimientos: Array<TipoMantenimitento>;
-  listaPeriocidad: Array<Periocidad>;
+  tiposPeriodicidad: Array<TipoPeriodicidad>;
 
 
   constructor(
@@ -44,8 +44,8 @@ export class MantenimientoEditarComponent implements OnInit {
     this.enumService.tiposMantenimiento().subscribe((tiposMantenimientos) => {
       this.tiposMantenimientos = tiposMantenimientos;
 
-        this.enumService.listaPeriocidad().subscribe((listaPeriocidad) => {
-          this.listaPeriocidad = this.listaPeriocidad;
+        this.enumService.tiposPeriodicidad().subscribe((tiposPeriodicidad) => {
+          this.tiposPeriodicidad = this.tiposPeriodicidad;
 
         this.mantenimientoForm = this.formBuilder.group({
           tipo_mantenimiento: [null, Validators.required],

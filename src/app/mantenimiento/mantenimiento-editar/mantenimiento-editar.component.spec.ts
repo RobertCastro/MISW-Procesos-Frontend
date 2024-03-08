@@ -9,8 +9,8 @@ import { ToastrModule } from 'ngx-toastr';
 import { By } from '@angular/platform-browser';
 import { of } from 'rxjs';
 import { FormArray,FormBuilder, FormsModule,ReactiveFormsModule ,FormGroup,Validators } from '@angular/forms';
-import { EncabezadoAppModule } from 'src/app/encabezado-app/encabezado-app.module';
-import { EnumsService } from 'src/app/enums.service';
+import { EncabezadoAppModule } from 'src/app/encabezado/encabezado.module';
+import { EnumsService } from 'src/app/enums/enums.service';
 
 describe('MantenimientoEditarComponent', () => {
   let component: MantenimientoEditarComponent;
