@@ -26,8 +26,8 @@ const routes: Routes = [
   { path: 'propiedades/:id/movimientos/crear', component: MovimientoCrearComponent, pathMatch: 'full'},
   { path: 'propiedades/:id/reserva/crear', component: ReservaCrearComponent, pathMatch: 'full'},
   { path: 'propiedades/:id_propiedad/reserva/editar/:id_reserva', component: ReservaEditarComponent, pathMatch: 'full'},
-  { path: 'mantenimientos/crear', component: MantenimientoCrearComponent, pathMatch: 'full'},
-  { path: 'mantenimientos/editar', component: MantenimientoEditarComponent, pathMatch: 'full'},
+  { path: 'mantenimientos/:id/crear', component: MantenimientoCrearComponent, pathMatch: 'full'},
+  { path: 'mantenimientos/:id/editar', component: MantenimientoEditarComponent, pathMatch: 'full'}
 ];
 
 @NgModule({

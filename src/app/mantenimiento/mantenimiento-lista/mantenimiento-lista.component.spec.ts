@@ -18,6 +18,7 @@ describe('MantenimientoListaComponent', () => {
       { 
         id: 1,
         id_propiedad: 1,
+        id_usuario: 1,
         costo: 1000,
         tipo_mantenimiento: 'ARREGLO',
         periodicidad: 'MENSUAL',

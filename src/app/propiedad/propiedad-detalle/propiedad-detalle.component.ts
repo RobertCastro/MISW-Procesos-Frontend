@@ -38,6 +38,6 @@ export class PropiedadDetalleComponent implements OnInit {
   }
 
   cerrarDetallePropiedad(): void {
-    this.cerrarDetalle.emit(); // Emitir el evento cuando el botón sea clickeado
+    this.cerrarDetalle.emit();
   }
 }

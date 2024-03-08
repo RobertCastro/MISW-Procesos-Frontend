@@ -13,7 +13,7 @@
             formControlName="tipo_mantenimiento"
             class="form-control" id="tipo_mantenimiento">
               <option [ngValue]="null" disabled>Elegir tipo de mantenimiento</option>
-              <option *ngFor="let tipoMantenimiento of tiposMantenimientos" [ngValue]="tipoMantenimiento">{{tiposMantenimientos}}</option>
+              <option *ngFor="let tipoMantenimiento of tiposMantenimientos" [ngValue]="tipoMantenimiento">{{tipoMantenimiento}}</option>
           </select>
        <div
           class="alert alert-danger alert-dismissible fade show"
@@ -30,7 +30,7 @@
       <div class="form-group mx-sm-3 mb-2">
         <label for="costo">
           Costo: </label>
-          <input type="number" formControlName="costo"  class="form-control" formControlName="costo" id="costo" placeholder="costo">
+          <input type="number" formControlName="costo"  class="form-control" formControlName="costo" id="costo" placeholder="Costo">
         <div
         class="alert alert-danger alert-dismissible fade show"
         *ngIf="
@@ -47,7 +47,7 @@
             formControlName="periodicidad"
             class="form-control" id="periodicidad">
               <option [ngValue]="null" disabled>Elegir periodicidad</option>
-              <option *ngFor="let periodicidad of listaPeriocidad" [ngValue]="periodicidad">{{listaPeriocidad}}</option>
+              <option *ngFor="let tipoPeriodicidad of tiposPeriodicidad" [ngValue]="tipoPeriodicidad">{{tipoPeriodicidad}}</option>
           </select>
         <div
         class="alert alert-danger alert-dismissible fade show"
@@ -61,7 +61,12 @@
 
       <div class="form-group mx-sm-3 mb-2">
         <label>Estado:</label>
-          <input type="text" formControlName="estado" class="form-control" id="estado" placeholder="Estado">
+        <select formControlName="estado" class="form-control" id="estado">
+          <option [ngValue]="" disabled>Elegir estado</option>
+          <option value="1">Realizado</option>
+          <option value="0">Pendiente</option>
+        </select>
+
         <div
         class="alert alert-danger alert-dismissible fade show"
         *ngIf="

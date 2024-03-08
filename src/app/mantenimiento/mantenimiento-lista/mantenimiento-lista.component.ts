@@ -45,7 +45,7 @@ export class MantenimientoListaComponent implements OnInit, OnChanges {
     if (this.propiedadId) {
       this.mantenimientoService.obtenerMantenimientos(this.propiedadId).subscribe((mantenimientos) => {
         this.mantenimientos = mantenimientos;
-        this.cargarPropiedad(this.propiedadId); // Llama a cargarPropiedad para obtener los detalles de la propiedad
+        this.cargarPropiedad(this.propiedadId);
       }, error => {
         this.toastr.error("Error", "Ha ocurrido un error al cargar los mantenimientos. " + error.message);
       });
@@ -60,8 +60,8 @@ export class MantenimientoListaComponent implements OnInit, OnChanges {
     });
   }
 
-  crearMantenimiento(){
-    this.routerPath.navigate(['/mantenimientos/crear']);
+  crearMantenimiento(idPropiedad: number): void {
+    this.routerPath.navigate(['/mantenimientos/'+ idPropiedad + '/crear']);
   }
 
   editarMantenimiento(){

@@ -24,7 +24,7 @@
   </div>
   <div class="row border rounded border-1 mt-5 pt-2">
     <div class="col">
-      <h4 class="px-2">Mantenimientos <button type="button" test-id="boton-crear-mant" *ngIf="usuarioEsPropietario == false" [disabled]="false" class="btn btn-warning" (click)="crearMantenimiento()"><i
+      <h4 class="px-2">Mantenimientos <button type="button" test-id="boton-crear-mant" *ngIf="usuarioEsPropietario == false" [disabled]="false" class="btn btn-warning" (click)="crearMantenimiento(propiedad.id)"><i
         class="bi bi-plus-circle"></i></button></h4>
       <div *ngIf="mantenimientos.length === 0">
         <p>La propiedad no tiene mantenimientos registrados</p>

@@ -18,6 +18,8 @@ export class PropiedadListaComponent implements OnInit {
   propiedadSeleccionadaId: number;
   usuarioEsPropietario: boolean = false;
   mostrarMantenimientosComponent: boolean = false;
+
+  componenteActivo: string = '';
   
   constructor(
     private routerPath: Router,
@@ -27,12 +29,14 @@ export class PropiedadListaComponent implements OnInit {
   ) { }
 
   verDetalle(id: number): void {
+    this.componenteActivo = 'detalle';
     this.propiedadSeleccionadaId = id;
     this.mostrarDetalleComponente = true;
   }
 
   ocultarDetallePropiedad(): void {
     this.mostrarDetalleComponente = false;
+    this.componenteActivo = '';
   }
 
   
@@ -59,11 +63,13 @@ export class PropiedadListaComponent implements OnInit {
   }
 
   crearPropiedad():void {
+    this.componenteActivo = 'crear';
     this.mostrarCrearComponente = true;
   }
 
   cancelarCrearPropiedad():void {
     this.mostrarCrearComponente = false;
+    this.componenteActivo = '';
   }
 
   submitCrearPropiedad():void {
@@ -97,9 +103,9 @@ export class PropiedadListaComponent implements OnInit {
     });
   }
 
-  verMovimientos(id: number): void {
+  verMantenimientos(id: number): void {
+    this.componenteActivo = 'mantenimientos';
     this.propiedadSeleccionadaId = id;
-    // console.log("id: " + id);
     this.mostrarMantenimientosComponent = true;
   }
 
