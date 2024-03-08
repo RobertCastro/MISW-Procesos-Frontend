@@ -6,6 +6,6 @@ import { MantenimientoCrearComponent } from './mantenimiento-crear.component';
   imports: [
     CommonModule
   ],
-  declarations: [MantenimientoCrearComponent]
+  declarations: []
 })
 export class MantenimientoCrearModule { }

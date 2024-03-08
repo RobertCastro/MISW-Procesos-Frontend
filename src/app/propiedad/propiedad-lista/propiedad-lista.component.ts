@@ -97,9 +97,8 @@ export class PropiedadListaComponent implements OnInit {
     });
   }
 
-  verMovimientos(id: number): void {
+  verMantenimientos(id: number): void {
     this.propiedadSeleccionadaId = id;
-    // console.log("id: " + id);
     this.mostrarMantenimientosComponent = true;
   }
 

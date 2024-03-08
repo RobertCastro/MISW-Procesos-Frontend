@@ -38,7 +38,7 @@ export class UsuarioLoginComponent implements OnInit {
         // sessionStorage.setItem('decodedToken', this.helper.decodeToken(res.token));
 
         sessionStorage.setItem('token', res.token);
-        sessionStorage.setItem('idUsuario', res.id);
+        sessionStorage.setItem('idUsuario', res.idUsuario);
         sessionStorage.setItem('rol', res.rol);
         this.toastrService.success("Login ok", "Información", {closeButton: true});
         this.router.navigate([`/propiedades`])
