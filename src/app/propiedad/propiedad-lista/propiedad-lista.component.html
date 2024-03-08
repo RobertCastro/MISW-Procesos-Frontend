@@ -31,12 +31,12 @@
     </div>
   </div>
   <div class="col-md-7">
-    <app-propiedad-detalle *ngIf="mostrarDetalleComponente"
+    <app-propiedad-detalle *ngIf="componenteActivo === 'detalle'"
       [propiedadId]="propiedadSeleccionadaId"
       (cerrarDetalle)="ocultarDetallePropiedad()"
       ></app-propiedad-detalle>
-    <app-propiedad-crear *ngIf="mostrarCrearComponente" (cancelarCrearPropiedad)="cancelarCrearPropiedad()" (submitCrearPropiedad)="submitCrearPropiedad()"></app-propiedad-crear>
-    <app-mantenimiento-lista *ngIf="mostrarMantenimientosComponent"
+    <app-propiedad-crear *ngIf="componenteActivo === 'crear'" (cancelarCrearPropiedad)="cancelarCrearPropiedad()" (submitCrearPropiedad)="submitCrearPropiedad()"></app-propiedad-crear>
+    <app-mantenimiento-lista *ngIf="componenteActivo === 'mantenimientos'"
       [propiedadId]="propiedadSeleccionadaId"
       ></app-mantenimiento-lista>
   </div>
