@@ -59,7 +59,11 @@ export class MantenimientoEditarComponent implements OnInit {
   }
 
   editarMantenimiento(mantenimiento: Mantenimiento,idPropiedad: number) {
-    this.mantenimientoService.editarMantenimiento(mantenimiento,mantenimiento.id,idPropiedad).subscribe((mantenimiento) => {
+      mantenimiento.id_propiedad = this.idPropiedad;  
+      mantenimiento.id_usuario = parseInt(sessionStorage.getItem('idUsuario'));
+      mantenimiento.id = this.idMantenimiento;
+
+      this.mantenimientoService.editarMantenimiento(mantenimiento,this.idMantenimiento,idPropiedad).subscribe((mantenimiento) => {
       this.toastr.success("Confirmation", "Mantenimiento modificado")
       this.mantenimientoForm.reset();
       this.routerPath.navigate(['/propiedades/']);
