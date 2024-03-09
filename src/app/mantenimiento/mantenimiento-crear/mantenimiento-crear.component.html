@@ -80,7 +80,7 @@
   </div>
 </div>
 
-  <button type="submit" class="btn btn-primary" [disabled]="!mantenimientoForm.valid">Guardar</button>&nbsp;
-  <button type="button" class="btn btn-danger ml-3" (click)="cancelarCrearMantenimiento()">Cancelar</button>
+  <button type="submit" class="btn btn-primary" [disabled]="!mantenimientoForm.valid" test_id="bot_submit">Guardar</button>&nbsp;
+  <button type="button" test-id="bot_cancel" class="btn btn-danger ml-3" (click)="cancelarCrearMantenimiento()">Cancelar</button>
 
 </form>
