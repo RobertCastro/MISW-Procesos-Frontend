@@ -23,6 +23,13 @@ export class MantenimientoService {
     return this.http.get<Mantenimiento[]>(`${this.apiUrl}/propiedades/${idPropiedad}/mantenimientos`, { headers: headers });
   }
 
+  obtenerMantenimiento(idMantenimiento: number): Observable<Mantenimiento> {
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${sessionStorage.getItem('token')}`
+    });
+    return this.http.get<Mantenimiento>(`${this.apiUrl}/mantenimientos/${idMantenimiento}`, { headers: headers });
+  }
+
   crearMantenimiento(mantenimiento: Mantenimiento, idPropiedad: number): Observable<Mantenimiento> {
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${sessionStorage.getItem('token')}`
@@ -30,12 +37,11 @@ export class MantenimientoService {
     return this.http.post<Mantenimiento>(`${this.apiUrl}/propiedades/${idPropiedad}/mantenimientos`, mantenimiento, { headers: headers });
   }
 
-  //TODO: ajustar dado que el input es distinto a crear mantenimiento
-  editarMantenimiento(mantenimiento: Mantenimiento, idPropiedad: number): Observable<Mantenimiento> {
+  editarMantenimiento(mantenimiento: Mantenimiento,idMantenimiento:number,idPropiedad:number): Observable<Mantenimiento> {
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${sessionStorage.getItem('token')}`
     });
-    return this.http.put<Mantenimiento>(`${this.apiUrl}/propiedades/${idPropiedad}/mantenimiento`, mantenimiento, { headers: headers });
+    return this.http.put<Mantenimiento>(`${this.apiUrl}/propiedades/${idPropiedad}/mantenimientos/${idMantenimiento}`, mantenimiento, { headers: headers });
   }
 
 

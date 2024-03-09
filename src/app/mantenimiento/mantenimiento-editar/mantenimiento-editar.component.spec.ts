@@ -9,15 +9,15 @@ import { ToastrModule } from 'ngx-toastr';
 import { By } from '@angular/platform-browser';
 import { of } from 'rxjs';
 import { FormArray,FormBuilder, FormsModule,ReactiveFormsModule ,FormGroup,Validators } from '@angular/forms';
-import { EncabezadoAppModule } from 'src/app/encabezado/encabezado.module';
-import { EnumsService } from 'src/app/enums/enums.service';
+import { EncabezadoAppModule } from 'src/app/encabezado-app/encabezado-app.module';
+import { EnumsService } from 'src/app/enums.service';
 
 describe('MantenimientoEditarComponent', () => {
   let component: MantenimientoEditarComponent;
   let fixture: ComponentFixture<MantenimientoEditarComponent>;
   let mantenimientoServiceSpy: jasmine.SpyObj<MantenimientoService>;
   let tiposMantenimientoSpy: jasmine.SpyObj<EnumsService>;
-  let listaPeriocidadSpy: jasmine.SpyObj<EnumsService>;
+  let listaPeriodicidadSpy: jasmine.SpyObj<EnumsService>;
 
   beforeEach(async () => {
     mantenimientoServiceSpy = jasmine.createSpyObj('MantenimientoService', ['obtenerMantenimientos']);
@@ -25,6 +25,7 @@ describe('MantenimientoEditarComponent', () => {
       { 
         id: 1,
         id_propiedad: 1,
+        id_usuario: 1,
         costo: 1000,
         tipo_mantenimiento: 'ARREGLO',
         periodicidad: 'MENSUAL',
@@ -35,8 +36,8 @@ describe('MantenimientoEditarComponent', () => {
     tiposMantenimientoSpy=jasmine.createSpyObj('EnumsService',['tiposMantenimiento']);
     tiposMantenimientoSpy.tiposMantenimiento.and.returnValue(of(['ARREGLO', 'MANTENIMIENTO_GENERAL', 'AIRE_ACONDICIONADO','LIMPIEZA']));
     
-    listaPeriocidadSpy=jasmine.createSpyObj('EnumsService',['listaPeriocidad']);
-    listaPeriocidadSpy.listaPeriocidad.and.returnValue(of(['MENSUAL', 'SEMANAL', 'TRIMESTRAL', 'SEMESTRAL', 'ANUAL']));
+    listaPeriodicidadSpy=jasmine.createSpyObj('EnumsService',['tiposPeriodicidad']);
+    listaPeriodicidadSpy.tiposPeriodicidad.and.returnValue(of(['MENSUAL', 'SEMANAL', 'TRIMESTRAL', 'SEMESTRAL', 'ANUAL']));
 
     await TestBed.configureTestingModule({
       declarations: [ MantenimientoEditarComponent ],
@@ -58,7 +59,7 @@ describe('MantenimientoEditarComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(MantenimientoEditarComponent);
     component = fixture.componentInstance;
-    component.propiedadId = 1;
+    component.idPropiedad = 1;
     fixture.detectChanges();
   });
 

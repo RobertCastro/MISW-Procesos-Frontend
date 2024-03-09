@@ -15,12 +15,12 @@ import { PropiedadService } from 'src/app/propiedad/propiedad.service';
   styleUrls: ['./mantenimiento-editar.component.css']
 })
 export class MantenimientoEditarComponent implements OnInit {
-  @Input() propiedadId: number;
+  @Input() idMantenimiento: number;
+  @Input() idPropiedad: number;
   mantenimientoForm: FormGroup;
-  propiedad: any;
   tiposMantenimientos: Array<TipoMantenimitento>;
   tiposPeriodicidad: Array<TipoPeriodicidad>;
-
+  mantenimiento: Mantenimiento;
 
   constructor(
     private routerPath: Router,
@@ -39,13 +39,14 @@ export class MantenimientoEditarComponent implements OnInit {
      }
 
   ngOnInit() {
-    this.propiedadId = parseInt(this.router.snapshot.params['id']);
+     this.idPropiedad = parseInt(this.router.snapshot.params['id_propiedad']);
+     this.idMantenimiento = parseInt(this.router.snapshot.params['id_mantenimiento']);
 
     this.enumService.tiposMantenimiento().subscribe((tiposMantenimientos) => {
       this.tiposMantenimientos = tiposMantenimientos;
 
         this.enumService.tiposPeriodicidad().subscribe((tiposPeriodicidad) => {
-          this.tiposPeriodicidad = this.tiposPeriodicidad;
+          this.tiposPeriodicidad = tiposPeriodicidad;
 
         this.mantenimientoForm = this.formBuilder.group({
           tipo_mantenimiento: [null, Validators.required],
@@ -57,11 +58,11 @@ export class MantenimientoEditarComponent implements OnInit {
     });
   }
 
-  editarMantenimiento(mantenimiento: Mantenimiento) {
-    this.mantenimientoService.editarMantenimiento(mantenimiento, this.propiedadId).subscribe((mantenimiento) => {
+  editarMantenimiento(mantenimiento: Mantenimiento,idPropiedad: number) {
+    this.mantenimientoService.editarMantenimiento(mantenimiento,mantenimiento.id,idPropiedad).subscribe((mantenimiento) => {
       this.toastr.success("Confirmation", "Mantenimiento modificado")
       this.mantenimientoForm.reset();
-      this.routerPath.navigate(['/propiedades/' + this.propiedadId + '/mantenimientos']);
+      this.routerPath.navigate(['/propiedades/']);
     },
     error => {
       if (error.statusText === "UNAUTHORIZED") {
