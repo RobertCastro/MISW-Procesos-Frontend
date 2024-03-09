@@ -32,7 +32,7 @@ export class MantenimientoEditarComponent implements OnInit {
     private formBuilder: FormBuilder) {
       this.mantenimientoForm = this.formBuilder.group({
         tipo_mantenimiento: [null, Validators.required],
-        costo: ["", Validators.required],
+        costo :['', Validators.compose([Validators.required, Validators.min(0)])],
         periodicidad: ["", Validators.required],
         estado: [null, Validators.required]
       });
@@ -53,7 +53,7 @@ export class MantenimientoEditarComponent implements OnInit {
             
             this.mantenimientoForm = this.formBuilder.group({
               tipo_mantenimiento: [mantenimiento.tipo_mantenimiento, Validators.required],
-              costo: [mantenimiento.costo, Validators.required],
+              costo :[mantenimiento.costo, Validators.compose([Validators.required, Validators.min(0)])],
               periodicidad: [mantenimiento.periodicidad, []],
               estado: [estado_num, []]
             });
