@@ -23,11 +23,25 @@ export class MantenimientoService {
     return this.http.get<Mantenimiento[]>(`${this.apiUrl}/propiedades/${idPropiedad}/mantenimientos`, { headers: headers });
   }
 
+  obtenerMantenimiento(idMantenimiento: number): Observable<Mantenimiento> {
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${sessionStorage.getItem('token')}`
+    });
+    return this.http.get<Mantenimiento>(`${this.apiUrl}/mantenimientos/${idMantenimiento}`, { headers: headers });
+  }
+
   crearMantenimiento(mantenimiento: Mantenimiento, idPropiedad: number): Observable<Mantenimiento> {
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${sessionStorage.getItem('token')}`
     });
     return this.http.post<Mantenimiento>(`${this.apiUrl}/propiedades/${idPropiedad}/mantenimientos`, mantenimiento, { headers: headers });
+  }
+
+  editarMantenimiento(mantenimiento: Mantenimiento,idMantenimiento:number,idPropiedad:number): Observable<Mantenimiento> {
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${sessionStorage.getItem('token')}`
+    });
+    return this.http.put<Mantenimiento>(`${this.apiUrl}/propiedades/${idPropiedad}/mantenimientos/${idMantenimiento}`, mantenimiento, { headers: headers });
   }
 
 

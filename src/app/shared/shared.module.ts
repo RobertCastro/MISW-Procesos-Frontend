@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MantenimientoListaComponent } from '../mantenimiento/mantenimiento-lista/mantenimiento-lista.component';
 import { MantenimientoCrearComponent } from '../mantenimiento/mantenimiento-crear/mantenimiento-crear.component';
+import { MantenimientoEditarComponent } from '../mantenimiento/mantenimiento-editar/mantenimiento-editar.component';
 import { EncabezadoAppModule } from '../encabezado-app/encabezado-app.module';
 
 @NgModule({
@@ -13,11 +14,13 @@ import { EncabezadoAppModule } from '../encabezado-app/encabezado-app.module';
   ],
   declarations: [
     MantenimientoListaComponent,
-    MantenimientoCrearComponent
+    MantenimientoCrearComponent,
+    MantenimientoEditarComponent
   ],
   exports: [
     MantenimientoListaComponent,
-    MantenimientoCrearComponent
+    MantenimientoCrearComponent,
+    MantenimientoEditarComponent
   ]
 })
 export class SharedModule { }
