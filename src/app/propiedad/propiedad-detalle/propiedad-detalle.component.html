@@ -1,0 +1,41 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <h2>{{ propiedad.nombre_propiedad }}</h2>
+      <table class="table table-hover rounded" *ngIf="propiedad">
+        <tbody>
+          <tr>
+            <th scope="row text-start">Ciudad</th>
+            <td>{{ propiedad.ciudad }}</td>
+          </tr>
+          <tr>
+            <th scope="row">Municipio</th>
+            <td>{{ propiedad.municipio }}</td>
+          </tr>
+          <tr>
+            <th scope="row">Dirección</th>
+            <td>{{ propiedad.direccion }}</td>
+          </tr>
+          <tr>
+            <th scope="row">Nombre propietario</th>
+            <td>{{ propiedad.nombre_propietario }}</td>
+          </tr>
+          <tr>
+            <th scope="row">Número de contacto</th>
+            <td>{{ propiedad.numero_contacto }}</td>
+          </tr>
+          <tr>
+            <th scope="row">Banco</th>
+            <td>{{ propiedad.banco }}</td>
+          </tr>
+          <tr>
+            <th scope="row">Número de cuenta</th>
+            <td>{{ propiedad.numero_cuenta }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="col-md-12">
+      <button (click)="cerrarDetallePropiedad()" class="btn btn-info text-dark">Cerrar detalle</button>
+    </div>
+  </div>

@@ -17,6 +17,8 @@ export class MovimientoListaComponent implements OnInit {
   egresos: Array<Movimiento> = [];
   movimientos: Array<Movimiento>;
 
+  usuarioEsPropietario: boolean = true;
+
   constructor(
     private routerPath: Router,
     private router: ActivatedRoute,
@@ -25,6 +27,9 @@ export class MovimientoListaComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    if (sessionStorage.getItem('rol') == "ADMINISTRADOR"){
+      this.usuarioEsPropietario = false;
+    }
     this.idPropiedad = parseInt(this.router.snapshot.params['id']);
     this.movimientoService.obtenerMovimientos(this.idPropiedad).subscribe((movimientos) => {
       this.movimientos = movimientos;

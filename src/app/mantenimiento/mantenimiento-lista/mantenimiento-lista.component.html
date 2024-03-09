@@ -1,0 +1,62 @@
+<div class="container">
+  <div class="row border rounded border-1  pt-2">
+    <div class="col">
+      <h4 class="px-2">Información de la propiedad</h4>
+      <table class="table" *ngIf="propiedad">
+        <thead>
+          <tr>
+            <th>Nombre</th>
+            <th>Dirección</th>
+            <th>Nombre propietario</th>
+            <th>Número de contacto</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>{{ propiedad.nombre_propiedad }}</td>
+            <td>{{ propiedad.direccion }}</td>
+            <td>{{ propiedad.nombre_propietario }}</td>
+            <td>{{ propiedad.numero_contacto }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="row border rounded border-1 mt-5 pt-2">
+    <div class="col">
+      <h4 class="px-2">Mantenimientos <button type="button" test-id="boton-crear-mant" *ngIf="usuarioEsPropietario == false" [disabled]="false" class="btn btn-warning" (click)="crearMantenimiento(propiedad.id)"><i
+        class="bi bi-plus-circle"></i></button></h4>
+      <div *ngIf="mantenimientos.length === 0">
+        <p>La propiedad no tiene mantenimientos registrados</p>
+      </div>
+      <table class="table" *ngIf="mantenimientos.length > 0">
+        <thead>
+          <tr>
+            <th>Tipo</th>
+            <th>Costo</th>
+            <th>Periodicidad</th>
+            <th>Estado</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let mantenimiento of mantenimientos">
+            <td>{{mantenimiento.tipo_mantenimiento}}</td>
+            <td>{{mantenimiento.costo}}</td>
+            <td>{{mantenimiento.periodicidad}}</td>
+            <td *ngIf="mantenimiento.estado; else pendiente">Realizado</td>
+            <ng-template #pendiente>Pendiente</ng-template>
+            <td>
+              <button [disabled]="false" type="button" class="btn btn-primary m-2" (click)="editarMantenimiento(propiedadId,mantenimiento.id)" test-id="btn_mantenimientos_editar">
+                <i class="bi bi-pencil"></i>
+              </button>
+              <button [disabled]="false" type="button" class="btn btn-danger" test-id="btn_mantenimientos_del">
+                <i class="bi bi-trash"></i>
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

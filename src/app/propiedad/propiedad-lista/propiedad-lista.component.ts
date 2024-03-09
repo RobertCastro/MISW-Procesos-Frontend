@@ -13,7 +13,14 @@ export class PropiedadListaComponent implements OnInit {
 
   propiedades: Array<Propiedad> = []
   propiedadElegida: Propiedad
+  mostrarDetalleComponente: boolean = false;
+  mostrarCrearComponente: boolean = false;
+  propiedadSeleccionadaId: number;
+  usuarioEsPropietario: boolean = false;
+  mostrarMantenimientosComponent: boolean = false;
 
+  componenteActivo: string = '';
+  
   constructor(
     private routerPath: Router,
     private router: ActivatedRoute,
@@ -21,9 +28,26 @@ export class PropiedadListaComponent implements OnInit {
     private propiedadService: PropiedadService
   ) { }
 
+  verDetalle(id: number): void {
+    this.componenteActivo = 'detalle';
+    this.propiedadSeleccionadaId = id;
+    this.mostrarDetalleComponente = true;
+  }
+
+  ocultarDetallePropiedad(): void {
+    this.mostrarDetalleComponente = false;
+    this.componenteActivo = '';
+  }
+
+  
+
   ngOnInit() {
     this.propiedadService.darPropiedades().subscribe((propiedades) => {
       this.propiedades = propiedades;
+      var rol=sessionStorage.getItem('rol');
+      if (rol === "PROPIETARIO") {
+        this.usuarioEsPropietario = true;
+      }
     },
     error => {
       if (error.statusText === "UNAUTHORIZED") {
@@ -39,7 +63,18 @@ export class PropiedadListaComponent implements OnInit {
   }
 
   crearPropiedad():void {
-    this.routerPath.navigate(['/propiedad/crear/']);
+    this.componenteActivo = 'crear';
+    this.mostrarCrearComponente = true;
+  }
+
+  cancelarCrearPropiedad():void {
+    this.mostrarCrearComponente = false;
+    this.componenteActivo = '';
+  }
+
+  submitCrearPropiedad():void {
+    this.mostrarCrearComponente = false;
+    this.ngOnInit();
   }
 
   movimientos(idPropiedad: number): void {
@@ -66,6 +101,12 @@ export class PropiedadListaComponent implements OnInit {
         this.toastr.error("Error","Ha ocurrido un error. " + error.message)
       }
     });
+  }
+
+  verMantenimientos(id: number): void {
+    this.componenteActivo = 'mantenimientos';
+    this.propiedadSeleccionadaId = id;
+    this.mostrarMantenimientosComponent = true;
   }
 
 }

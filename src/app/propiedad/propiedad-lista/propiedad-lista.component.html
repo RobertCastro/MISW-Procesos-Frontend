@@ -1,28 +1,43 @@
 <app-encabezado></app-encabezado>
 <h1>Propiedades</h1>
-      
-      Propiedades <button type="button" class="btn btn-warning" (click)="crearPropiedad()"><i class="bi bi-plus-circle"></i></button>
-      <div>
+<div class="row">
+  <div class="col-md-5">
+    Propiedades <button type="button" test-id="boton-crear-prop" *ngIf="usuarioEsPropietario == false" [disabled]="false" class="btn btn-warning" (click)="crearPropiedad()"><i
+        class="bi bi-plus-circle"></i></button>
+    <div>
       <table class="table" border="0">
         <thead>
           <th>Nombre</th>
-          <th>Dirección</th>
-          <th>Nombre propietario</th>
-          <th>Contacto</th>
           <th>Acciones</th>
         </thead>
         <tbody>
           <tr *ngFor="let propiedad of propiedades">
             <td><a href="/propiedades/{{propiedad.id}}/reservas">{{propiedad.nombre_propiedad}}</a></td>
-            <td>{{propiedad.direccion}}</td>
-            <td>{{propiedad.nombre_propietario}}</td>
-            <td>{{propiedad.numero_contacto}}</td>
             <td>
-              <button [disabled]="false" type="button" class="btn btn-primary" (click)="editarPropiedad(propiedad.id)"><i class="bi bi-pencil"></i></button>&nbsp;
-              <button [disabled]="false" type="button" class="btn btn-danger" (click)="borrarPropiedad(propiedad.id)"><i class="bi bi-trash"></i></button>&nbsp;
-              <button [disabled]="false" type="button" class="btn btn-warning" (click)="movimientos(propiedad.id)"><i class="bi bi-cash-coin"></i></button>
+              <button (click)="verDetalle(propiedad.id)"  [disabled]="false" type="button" class="btn btn-success" test-id="bot_ver"><i
+                  class="bi bi-eye"></i></button>&nbsp;
+              <button [disabled]="false" *ngIf="usuarioEsPropietario == false" type="button" class="btn btn-primary" test-id="bot_editar"
+                (click)="editarPropiedad(propiedad.id)"><i class="bi bi-pencil"></i></button>&nbsp;
+              <button [disabled]="false" *ngIf="usuarioEsPropietario == false" type="button" class="btn btn-danger" test-id="bot_borrar"
+                (click)="borrarPropiedad(propiedad.id)"><i class="bi bi-trash"></i></button>&nbsp;
+              <button [disabled]="false" type="button" class="btn btn-warning" test-id="bot_movimientos"
+                (click)="movimientos(propiedad.id)"><i class="bi bi-cash-coin"></i></button>&nbsp;
+                <button (click)="verMantenimientos(propiedad.id)"  [disabled]="false" type="button" class="btn btn-orange" test-id="bot_ver_mantenimientos"><i
+                  class="bi bi-gear"></i></button>
             </td>
           </tr>
         </tbody>
       </table>
+    </div>
+  </div>
+  <div class="col-md-7">
+    <app-propiedad-detalle *ngIf="componenteActivo === 'detalle'"
+      [propiedadId]="propiedadSeleccionadaId"
+      (cerrarDetalle)="ocultarDetallePropiedad()"
+      ></app-propiedad-detalle>
+    <app-propiedad-crear *ngIf="componenteActivo === 'crear'" (cancelarCrearPropiedad)="cancelarCrearPropiedad()" (submitCrearPropiedad)="submitCrearPropiedad()"></app-propiedad-crear>
+    <app-mantenimiento-lista *ngIf="componenteActivo === 'mantenimientos'"
+      [propiedadId]="propiedadSeleccionadaId"
+      ></app-mantenimiento-lista>
+  </div>
 </div>

@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { FormArray, FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { Component, OnInit, EventEmitter, Output } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Propiedad } from '../propiedad';
@@ -13,7 +13,8 @@ import { EnumsService } from 'src/app/enums.service';
   styleUrls: ['./propiedad-crear.component.css']
 })
 export class PropiedadCrearComponent implements OnInit {
-
+  @Output() cancelarCrearPropiedad: EventEmitter<void> = new EventEmitter<void>();
+  @Output() submitCrearPropiedad: EventEmitter<void> = new EventEmitter<void>();
   propiedadForm: FormGroup;
   listaBancos: Banco[] = [];
 
@@ -23,7 +24,7 @@ export class PropiedadCrearComponent implements OnInit {
     private toastr: ToastrService,
     private propiedadService: PropiedadService,
     private enumService: EnumsService
-  ) { 
+  ) {
     this.propiedadForm = this.formBuilder.group({
       nombre_propiedad: ["", Validators.required],
       ciudad: ["", Validators.required],
@@ -37,31 +38,19 @@ export class PropiedadCrearComponent implements OnInit {
   }
 
   ngOnInit() {
-
     this.enumService.bancos().subscribe((bancos) => {
       this.listaBancos = bancos;
-
-      this.propiedadForm = this.formBuilder.group({
-        nombre_propiedad: ["", Validators.required],
-        ciudad: ["", Validators.required],
-        municipio: ["", []],
-        direccion: ["", Validators.required],
-        nombre_propietario: ["", Validators.required],
-        numero_contacto: ["", Validators.required],
-        banco: [null, []],
-        numero_cuenta: ["", []]
-      });
     });
-
   }
 
   crearPropiedad(nuevaPropiedad: Propiedad): void {
     this.propiedadService.crearPropiedad(nuevaPropiedad).subscribe((propiedad) => {
-      this.toastr.success("Confirmation", "Registro creado")
+      this.toastr.success("Confirmation", "Registro creado");
       this.propiedadForm.reset();
       this.routerPath.navigate(['/propiedades/']);
+      this.submitCrearPropiedad.emit();
     },
-    error => {
+    error =>  {
       if (error.statusText === "UNAUTHORIZED") {
         this.toastr.error("Error","Su sesión ha caducado, por favor vuelva a iniciar sesión.")
       }
@@ -77,7 +66,7 @@ export class PropiedadCrearComponent implements OnInit {
 
   cancelarPropiedad(): void {
     this.propiedadForm.reset();
-    this.routerPath.navigate(['/propiedades/']);
+    this.cancelarCrearPropiedad.emit();
   }
 
 

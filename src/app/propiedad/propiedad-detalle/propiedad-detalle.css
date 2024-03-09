@@ -1,0 +1,6 @@
+table{
+  border-radius: 8px;
+}
+table th, table td{
+  text-align: left;
+}

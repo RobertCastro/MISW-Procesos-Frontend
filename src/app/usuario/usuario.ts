@@ -7,3 +7,14 @@ export class Usuario {
         this.password = password
     }
 }
+
+export class Propietario {
+    //usuario : string;
+    //contrasena : string;
+    nombre :string
+    //apellidos :string
+    celular :string
+    //correo :string
+    //tipo_id :string
+    //identificacion :string
+}

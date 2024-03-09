@@ -11,6 +11,8 @@ import { ReservaEditarComponent } from './reserva/reserva-editar/reserva-editar.
 import { MovimientoListaComponent } from './movimiento/movimiento-lista/movimiento-lista.component';
 import { MovimientoEditarComponent } from './movimiento/movimiento-editar/movimiento-editar.component';
 import { MovimientoCrearComponent } from './movimiento/movimiento-crear/movimiento-crear.component';
+import { MantenimientoCrearComponent } from './mantenimiento/mantenimiento-crear/mantenimiento-crear.component';
+import { MantenimientoEditarComponent } from './mantenimiento/mantenimiento-editar/mantenimiento-editar.component';
 
 const routes: Routes = [
   { path: '', component: UsuarioLoginComponent, pathMatch: 'full' },
@@ -24,6 +26,8 @@ const routes: Routes = [
   { path: 'propiedades/:id/movimientos/crear', component: MovimientoCrearComponent, pathMatch: 'full'},
   { path: 'propiedades/:id/reserva/crear', component: ReservaCrearComponent, pathMatch: 'full'},
   { path: 'propiedades/:id_propiedad/reserva/editar/:id_reserva', component: ReservaEditarComponent, pathMatch: 'full'},
+  { path: 'mantenimientos/:id/crear', component: MantenimientoCrearComponent, pathMatch: 'full'},
+  { path: 'propiedades/:id_propiedad/mantenimientos/:id_mantenimiento/editar', component: MantenimientoEditarComponent, pathMatch: 'full'}
 ];
 
 @NgModule({
