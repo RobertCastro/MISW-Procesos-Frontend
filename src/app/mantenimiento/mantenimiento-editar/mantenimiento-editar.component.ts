@@ -48,14 +48,22 @@ export class MantenimientoEditarComponent implements OnInit {
         this.enumService.tiposPeriodicidad().subscribe((tiposPeriodicidad) => {
           this.tiposPeriodicidad = tiposPeriodicidad;
 
-        this.mantenimientoForm = this.formBuilder.group({
-          tipo_mantenimiento: [null, Validators.required],
-          costo: ["", Validators.required],
-          periodicidad: ["", Validators.required],
-          estado: [null, Validators.required]
-        });
+          this.mantenimientoService.obtenerMantenimiento(this.idMantenimiento).subscribe((mantenimiento) => {
+            let estado_num: number = mantenimiento.estado ? 1 : 0;
+            
+            this.mantenimientoForm = this.formBuilder.group({
+              tipo_mantenimiento: [mantenimiento.tipo_mantenimiento, Validators.required],
+              costo: [mantenimiento.costo, Validators.required],
+              periodicidad: [mantenimiento.periodicidad, []],
+              estado: [estado_num, []]
+            });
+      
+           });
+
       });
     });
+
+      
   }
 
   editarMantenimiento(mantenimiento: Mantenimiento,idPropiedad: number) {
