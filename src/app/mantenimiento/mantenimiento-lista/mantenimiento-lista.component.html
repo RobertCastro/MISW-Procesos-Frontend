@@ -36,7 +36,7 @@
             <th>Costo</th>
             <th>Periodicidad</th>
             <th>Estado</th>
-            <th>Acciones</th>
+            <th *ngIf="usuarioEsPropietario == false" >Acciones</th>
           </tr>
         </thead>
         <tbody>
@@ -46,17 +46,19 @@
             <td>{{mantenimiento.periodicidad}}</td>
             <td *ngIf="mantenimiento.estado; else pendiente">Realizado</td>
             <ng-template #pendiente>Pendiente</ng-template>
-            <td>
+            <td *ngIf="usuarioEsPropietario == false">
               <button [disabled]="false" type="button" class="btn btn-primary m-2" (click)="editarMantenimiento(propiedadId,mantenimiento.id)" test-id="btn_mantenimientos_editar">
                 <i class="bi bi-pencil"></i>
-              </button>
-              <button [disabled]="false" type="button" class="btn btn-danger" test-id="btn_mantenimientos_del">
-                <i class="bi bi-trash"></i>
               </button>
             </td>
           </tr>
         </tbody>
       </table>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <button type="button" class="btn btn-primary" (click)="cerrarListaMantenimientos()" test-id="boton-volver">Volver</button>
     </div>
   </div>
 </div>

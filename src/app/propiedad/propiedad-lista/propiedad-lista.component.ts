@@ -39,6 +39,11 @@ export class PropiedadListaComponent implements OnInit {
     this.componenteActivo = '';
   }
 
+  cerrarMantenimientos(): void {
+    this.mostrarMantenimientosComponent = false;
+    this.componenteActivo = '';
+  }
+
   
 
   ngOnInit() {

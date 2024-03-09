@@ -38,6 +38,7 @@
     <app-propiedad-crear *ngIf="componenteActivo === 'crear'" (cancelarCrearPropiedad)="cancelarCrearPropiedad()" (submitCrearPropiedad)="submitCrearPropiedad()"></app-propiedad-crear>
     <app-mantenimiento-lista *ngIf="componenteActivo === 'mantenimientos'"
       [propiedadId]="propiedadSeleccionadaId"
+      (cerrarMantenimientos)="cerrarMantenimientos()"
       ></app-mantenimiento-lista>
   </div>
 </div>
