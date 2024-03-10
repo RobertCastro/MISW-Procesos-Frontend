@@ -35,9 +35,10 @@
         class="alert alert-danger alert-dismissible fade show"
         *ngIf="
             mantenimientoForm.get('costo')!.hasError('required') &&
-            mantenimientoForm.get('costo')!.touched
+            mantenimientoForm.get('costo')!.touched ||
+            mantenimientoForm.get('costo')!.hasError('min')
           ">
-          Contenido requerido
+          Contenido requerido, debe ser un número positivo
         </div>
       </div>
 

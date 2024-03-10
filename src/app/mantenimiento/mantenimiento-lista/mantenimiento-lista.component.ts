@@ -1,4 +1,4 @@
-import { Component, Input, OnChanges, SimpleChanges, OnInit } from '@angular/core';
+import { Component, Input, OnChanges, SimpleChanges, OnInit, EventEmitter, Output } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { MantenimientoService } from '../mantenimiento.service';
@@ -11,6 +11,7 @@ import { PropiedadService } from 'src/app/propiedad/propiedad.service';
 })
 export class MantenimientoListaComponent implements OnInit, OnChanges {
   
+  @Output() cerrarMantenimientos = new EventEmitter<void>();
   @Input() propiedadId: number;
   mantenimientos: Array<Mantenimiento>;
   propiedad: any;
@@ -66,6 +67,10 @@ export class MantenimientoListaComponent implements OnInit, OnChanges {
 
   editarMantenimiento(idPropiedad: number,idMantenimiento: number): void {
     this.routerPath.navigate(['/propiedades/'+idPropiedad+'/mantenimientos/'+ idMantenimiento +'/editar']);
+  }
+
+  cerrarListaMantenimientos(): void {
+    this.cerrarMantenimientos.emit();
   }
   
 }

@@ -32,7 +32,7 @@ export class MantenimientoCrearComponent implements OnInit {
     private formBuilder: FormBuilder) {
       this.mantenimientoForm = this.formBuilder.group({
         tipo_mantenimiento: [null, Validators.required],
-        costo: ["", Validators.required],
+        costo :['', Validators.compose([Validators.required, Validators.min(0)])],
         periodicidad: ["", Validators.required],
         estado: ["", Validators.required]
       });
@@ -50,14 +50,13 @@ export class MantenimientoCrearComponent implements OnInit {
 
         this.mantenimientoForm = this.formBuilder.group({
           tipo_mantenimiento: [null, Validators.required],
-          costo: ["", Validators.required],
+          costo :['', Validators.compose([Validators.required, Validators.min(0)])],
           periodicidad: ["", Validators.required],
           estado: ["", Validators.required]
         });
       });
     });
   }
-
 
   crearMantenimiento(mantenimiento: Mantenimiento) {
     mantenimiento.id_propiedad = this.propiedadId;
